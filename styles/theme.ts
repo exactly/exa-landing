@@ -64,7 +64,7 @@ export const lightTheme = createTheme({
       soft: "#E0F8F3",
     },
     neutral: {
-      secondary: "5F6563",
+      secondary: "#5F6563",
       soft: "#E6E9E8",
     },
   },
@@ -161,7 +161,7 @@ export const darkTheme = createTheme({
       soft: "#E0F8F3",
     },
     neutral: {
-      secondary: "5F6563",
+      secondary: "#5F6563",
       soft: "#E6E9E8",
     },
   },
