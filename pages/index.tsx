@@ -1,5 +1,4 @@
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
-import Flyer from "../components/Flyer";
 import {
   Accordion,
   AccordionDetails,
@@ -13,27 +12,42 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { animated, useTransition } from "@react-spring/web";
 import Image from "next/image";
-import { animated, useSprings, useTransition } from "@react-spring/web";
+import Flyer from "../components/Flyer";
+import { useParallaxConfig } from "../hooks/useParallaxConfig";
+import { cards, carrouselImages, faqs, steps } from "../data";
 import TableComponent from "../components/TableComponent";
-import { cards, steps, faqs, carrouselImages } from "../data";
+import { pages } from "next/dist/build/templates/app-page";
 
-const HomePage = () => {
+const NewLandingPage = () => {
   const parallaxRef = useRef<IParallax | null>(null);
   const { palette, breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down("sm"));
-  const TOTAL_PAGES = 33.5;
-
+  const config = useParallaxConfig();
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
+  const [expanded, setExpanded] = useState<number | false>(false);
 
   useEffect(() => {
     const container = parallaxRef.current?.container?.current;
     if (container) {
       const handleScroll = () => {
-        const progress =
-          container.scrollTop /
-          (container.scrollHeight - container.clientHeight);
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+        const scrollTop = container.scrollTop;
+
+        const maxScroll = scrollHeight - clientHeight;
+        let progress = scrollTop / maxScroll;
+
+        if (scrollTop >= maxScroll - 1) {
+          progress = 1;
+        } else if (progress > 0.98) {
+          const remaining = (1 - progress) * 50;
+          progress = 1 - remaining;
+        }
+
         setScrollProgress(progress);
       };
 
@@ -42,10 +56,16 @@ const HomePage = () => {
     }
   }, []);
 
+  const currentDevice = isMobile ? "mobile" : "desktop";
+
+  const animations = config.sections.intro.animations;
+  const worldwideAnimations = config.sections.worldwide.animations;
+  const freeCardAnimations = config.sections.freeCard.animations;
+  const secureAnimations = config.sections.secure.animations;
+  const bigPurchaseAnimations = config.sections.bigPurchase.animations;
+
   const [index, setIndex] = useState(0);
   const [isManual, setIsManual] = useState(false);
-  const [currentIndex, setCurrentIndex] = useState(1);
-  const [expanded, setExpanded] = useState<number | false>(false);
 
   useEffect(() => {
     let interval;
@@ -68,32 +88,24 @@ const HomePage = () => {
   });
 
   return (
-    <Box style={{ width: "100%", height: "100vh", overflow: "hidden" }}>
+    <Box style={{ width: "100%", height: "120vh" }}>
       <Parallax
         ref={parallaxRef}
-        pages={TOTAL_PAGES}
+        pages={config.pages.total}
         style={{ overflow: "auto" }}
       >
         <Flyer />
 
         <ParallaxLayer
-          offset={1}
-          factor={12.5}
+          offset={config.sections.sharedBackground.offset}
+          factor={config.sections.sharedBackground.factor}
           style={{
             backgroundColor: palette.brand.primary,
           }}
         />
 
         <ParallaxLayer
-          offset={16}
-          factor={10}
-          style={{
-            backgroundColor: palette.brand.primary,
-          }}
-        />
-
-        <ParallaxLayer
-          sticky={{ start: 1, end: 4 }}
+          sticky={config.sections.intro.sticky}
           style={{
             maxWidth: "1152px",
             margin: "0 auto",
@@ -103,19 +115,34 @@ const HomePage = () => {
         >
           <Grid
             container
-            sx={{ height: "100%" }}
+            sx={{
+              height: "100%",
+              minHeight: { xs: "100dvh", sm: "100vh" },
+            }}
             alignItems="center"
             justifyContent="center"
           >
             <Grid item xs={12} md={4}>
               <Box>
-                <Typography fontSize={17} fontWeight={400} color="#5F6563">
+                <Typography
+                  fontSize={{ xs: 15, md: 17 }}
+                  fontWeight={400}
+                  color="#5F6563"
+                >
                   Introducing
                 </Typography>
-                <Typography fontSize={34} fontWeight={700} color="#1A211E">
+                <Typography
+                  fontSize={{ xs: 28, md: 34 }}
+                  fontWeight={700}
+                  color="#1A211E"
+                >
                   The first onchain
                 </Typography>
-                <Typography fontSize={34} fontWeight={700} color="#12A594">
+                <Typography
+                  fontSize={{ xs: 28, md: 34 }}
+                  fontWeight={700}
+                  color="#12A594"
+                >
                   debit and credit card
                 </Typography>
               </Box>
@@ -125,27 +152,27 @@ const HomePage = () => {
               <animated.div
                 style={{
                   position: "absolute",
-                  top: isMobile ? -300 : -100,
+                  top: isMobile ? "-26vh" : "-100px",
                   right: 0,
-                  width: "100%",
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 2) return 1;
-                    if (progress > 2.5) return 0;
-                    return 1 - (progress - 2) / 0.5;
-                  })(),
-                  transform: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    const scaleProgress =
-                      progress < 1
-                        ? 0
-                        : progress > 1.5
-                        ? 1
-                        : (progress - 1) / 0.5;
-                    const s = 1 - scaleProgress * 0.189;
-                    const y = -35 * scaleProgress;
-                    return `scale(${s}) translateY(${y}px)`;
-                  })(),
+                  width: isMobile ? "80%" : "100%",
+                  margin: isMobile ? "0 auto" : "0",
+                  left: isMobile ? "0" : "auto",
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    animations.card[currentDevice].startFade,
+                    animations.card[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    animations.card[currentDevice].startTransform,
+                    animations.card[currentDevice].endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: isMobile ? 0.9 : 0.811,
+                      initialY: animations.card[currentDevice].initialY,
+                      finalY: animations.card[currentDevice].finalY,
+                    }
+                  ),
                   zIndex: 2,
                   pointerEvents: "none",
                 }}
@@ -162,22 +189,27 @@ const HomePage = () => {
               <animated.div
                 style={{
                   position: "absolute",
-                  top: isMobile ? -50 : 0,
+                  top: isMobile ? "30%" : "0",
                   right: 0,
-                  width: "100%",
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 1.5) return 0;
-                    if (progress > 4) return 1;
-                    return (progress - 1.5) / 2.5;
-                  })(),
-                  transform: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 2) return "translateY(0%)";
-                    if (progress > 4) return "translateY(-45%)";
-                    const translateY = ((progress - 2) / 2) * -45;
-                    return `translateY(${translateY}%)`;
-                  })(),
+                  width: isMobile ? "90%" : "100%",
+                  margin: isMobile ? "0 auto" : "0",
+                  left: isMobile ? "0" : "auto",
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    animations.phone[currentDevice].startFade,
+                    animations.phone[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    animations.phone[currentDevice].startTransform,
+                    animations.phone[currentDevice].endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: animations.phone[currentDevice].initialY,
+                      finalY: animations.phone[currentDevice].finalY,
+                    }
+                  ),
                   zIndex: 1,
                   pointerEvents: "none",
                 }}
@@ -195,7 +227,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 5, end: 7 }}
+          sticky={config.sections.worldwide.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -214,18 +246,23 @@ const HomePage = () => {
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 4.75) return 0;
-                    if (progress > 7.9) return 0;
-                    if (progress <= 5.5) {
-                      return (progress - 4.75) / (5.5 - 4.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    worldwideAnimations.text[currentDevice].startFade,
+                    worldwideAnimations.text[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    worldwideAnimations.text[currentDevice].startFade,
+                    worldwideAnimations.text[currentDevice].endFade,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY:
+                        worldwideAnimations.text[currentDevice].initialY,
+                      finalY: worldwideAnimations.text[currentDevice].finalY,
                     }
-                    if (progress <= 7) {
-                      return 1;
-                    }
-                    return 1 - (progress - 7) / (7.9 - 7);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
@@ -245,18 +282,23 @@ const HomePage = () => {
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 4.75) return 0;
-                    if (progress > 7.9) return 0;
-                    if (progress <= 5.5) {
-                      return (progress - 4.75) / (5.5 - 4.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    worldwideAnimations.image[currentDevice].startFade,
+                    worldwideAnimations.image[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    worldwideAnimations.image[currentDevice].startTransform,
+                    worldwideAnimations.image[currentDevice].endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY:
+                        worldwideAnimations.image[currentDevice].initialY,
+                      finalY: worldwideAnimations.image[currentDevice].finalY,
                     }
-                    if (progress <= 7) {
-                      return 1;
-                    }
-                    return 1 - (progress - 7) / (7.9 - 7);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
@@ -274,7 +316,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 8, end: 10 }}
+          sticky={config.sections.freeCard.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -293,23 +335,27 @@ const HomePage = () => {
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 7.75) return 0;
-                    if (progress > 10.9) return 0;
-                    if (progress <= 8.5) {
-                      return (progress - 7.75) / (8.5 - 7.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    freeCardAnimations.text[currentDevice].startFade,
+                    freeCardAnimations.text[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    freeCardAnimations.text[currentDevice].startFade,
+                    freeCardAnimations.text[currentDevice].endFade,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: freeCardAnimations.text[currentDevice].initialY,
+                      finalY: freeCardAnimations.text[currentDevice].finalY,
                     }
-                    if (progress <= 10) {
-                      return 1;
-                    }
-                    return 1 - (progress - 10) / (10.9 - 10);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
                   <Typography fontSize={17} fontWeight={400} color="#5F6563">
-                    No inssurance or service fees
+                    No insurance or service fees
                   </Typography>
                   <Typography fontSize={34} fontWeight={700} color="#1A211E">
                     Activate your card
@@ -320,33 +366,37 @@ const HomePage = () => {
                 </Box>
               </animated.div>
             </Grid>
+
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 7.75) return 0;
-                    if (progress > 10.9) return 0;
-                    if (progress <= 8.5) {
-                      return (progress - 7.75) / (8.5 - 7.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    freeCardAnimations.image[currentDevice].startFade,
+                    freeCardAnimations.image[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    freeCardAnimations.image[currentDevice].startTransform,
+                    freeCardAnimations.image[currentDevice].endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY:
+                        freeCardAnimations.image[currentDevice].initialY,
+                      finalY: freeCardAnimations.image[currentDevice].finalY,
                     }
-                    if (progress <= 10) {
-                      return 1;
-                    }
-                    return 1 - (progress - 10) / (10.9 - 10);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
-                  <animated.div style={{ width: "100%" }}>
-                    <Image
-                      src="/fee.svg"
-                      alt="fee"
-                      layout="responsive"
-                      width={500}
-                      height={500}
-                    />
-                  </animated.div>
+                  <Image
+                    src="/fee.svg"
+                    alt="fee"
+                    layout="responsive"
+                    width={500}
+                    height={500}
+                  />
                 </Box>
               </animated.div>
             </Grid>
@@ -354,7 +404,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 11, end: 12.5 }}
+          sticky={config.sections.secure.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -373,18 +423,22 @@ const HomePage = () => {
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 10.75) return 0;
-                    if (progress > 13.9) return 0;
-                    if (progress <= 11.5) {
-                      return (progress - 10.75) / (11.5 - 10.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    secureAnimations.text[currentDevice].startFade,
+                    secureAnimations.text[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    secureAnimations.text[currentDevice].startFade,
+                    secureAnimations.text[currentDevice].endFade,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: secureAnimations.text[currentDevice].initialY,
+                      finalY: secureAnimations.text[currentDevice].finalY,
                     }
-                    if (progress <= 13) {
-                      return 1;
-                    }
-                    return 1 - (progress - 13) / (13.9 - 13);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
@@ -400,33 +454,36 @@ const HomePage = () => {
                 </Box>
               </animated.div>
             </Grid>
+
             <Grid item xs={12} md={4}>
               <animated.div
                 style={{
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 10.75) return 0;
-                    if (progress > 13.9) return 0;
-                    if (progress <= 11.5) {
-                      return (progress - 10.75) / (11.5 - 10.75);
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    secureAnimations.image[currentDevice].startFade,
+                    secureAnimations.image[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    secureAnimations.image[currentDevice].startTransform,
+                    secureAnimations.image[currentDevice].endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: secureAnimations.image[currentDevice].initialY,
+                      finalY: secureAnimations.image[currentDevice].finalY,
                     }
-                    if (progress <= 13) {
-                      return 1;
-                    }
-                    return 1 - (progress - 13) / (13.9 - 13);
-                  })(),
+                  ),
                 }}
               >
                 <Box>
-                  <animated.div style={{ width: "100%" }}>
-                    <Image
-                      src="/secure-transactions.svg"
-                      alt="secure transactions"
-                      layout="responsive"
-                      width={500}
-                      height={500}
-                    />
-                  </animated.div>
+                  <Image
+                    src="/secure-transactions.svg"
+                    alt="secure transactions"
+                    layout="responsive"
+                    width={500}
+                    height={500}
+                  />
                 </Box>
               </animated.div>
             </Grid>
@@ -434,12 +491,12 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 14, end: 15 }}
+          sticky={config.sections.carousel.offset}
           style={{
             maxWidth: "1152px",
             margin: "0 auto",
-            height: "80vh",
-            top: "10vh",
+            height: config.sections.carousel.layout[currentDevice].height,
+            top: config.sections.carousel.layout[currentDevice].top,
             position: "relative",
             padding: "0 20px",
           }}
@@ -451,7 +508,6 @@ const HomePage = () => {
               width: "100%",
               height: "100%",
               borderRadius: "32px",
-              border: `1px solid ${palette.neutral.soft}`,
             }}
           >
             {transitions((style, i) => (
@@ -509,7 +565,7 @@ const HomePage = () => {
 
                 <Box
                   position="absolute"
-                  top={isMobile ? "20%" : 0}
+                  top={isMobile ? "15%" : 0}
                   left={0}
                   width={{ xs: "100%", md: "55%" }}
                   height={"100%"}
@@ -614,7 +670,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 16, end: 19 }}
+          sticky={config.sections.bigPurchase.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -627,7 +683,7 @@ const HomePage = () => {
             <Box
               sx={{
                 position: "absolute",
-                left: "-15%",
+                left: config.sections.bigPurchase.layout.sideLabel.left,
                 top: "50%",
                 transform: "translateY(-50%) rotate(-90deg)",
                 textOrientation: "upright",
@@ -636,20 +692,23 @@ const HomePage = () => {
               <Typography
                 component="div"
                 color={palette.brand.default}
-                textTransform={"uppercase"}
+                textTransform="uppercase"
                 sx={{
-                  fontWeight: 600,
-                  fontSize: "15px",
+                  display: "flex",
+                  alignItems: "center",
+                  fontWeight: 400,
+                  fontSize:
+                    config.sections.bigPurchase.layout.sideLabel.fontSize,
                 }}
               >
-                <Typography component="span" mr={"16px"}>
+                <Typography component="span" mr="16px">
                   03.
                 </Typography>
-                <Typography component="span" mr={"16px"}>
+                <Typography component="span" mr="16px">
                   02.
                 </Typography>
                 <Typography component="span" fontWeight={600}>
-                  01.installments
+                  01. Installments
                 </Typography>
               </Typography>
             </Box>
@@ -657,8 +716,8 @@ const HomePage = () => {
 
           <Grid
             container
+            padding={config.sections.bigPurchase.layout[currentDevice].padding}
             sx={{ height: "100%" }}
-            padding={"0 20px"}
             alignItems="center"
           >
             <Grid item xs={12} md={4} sx={{ margin: "0 auto" }}>
@@ -681,7 +740,7 @@ const HomePage = () => {
                   fontSize={34}
                   fontWeight={700}
                   color={palette.brand.default}
-                  lineHeight={"34px"}
+                  lineHeight="34px"
                   mb={4}
                 >
                   Big purchase? Split it in up to 6 installments
@@ -692,39 +751,46 @@ const HomePage = () => {
                 </Typography>
               </Box>
             </Grid>
+
             <Grid item xs={12} md={6}>
-              <animated.div
-                style={{
-                  paddingRight: 4,
-                }}
-              >
+              <Box sx={{ paddingRight: 4 }}>
                 <Image
                   src="/img/installments.jpg"
                   alt="installments"
                   layout="responsive"
                   style={{ borderRadius: "35px" }}
-                  width={564}
-                  height={432}
+                  width={500}
+                  height={500}
                 />
-              </animated.div>
+              </Box>
+
               <animated.div
                 style={{
                   position: "absolute",
-                  top: isMobile ? "55%" : "25%",
+                  top: isMobile ? "60%" : "25%",
                   right: isMobile ? "50%" : "20%",
                   width: isMobile ? "45%" : "25%",
                   aspectRatio: "1",
                   zIndex: 2,
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    return progress / 17 > 1 ? 1 : progress / 17;
-                  })(),
-                  transform: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    const translateY =
-                      progress / 19 > 1 ? -50 : (progress / 19) * -50;
-                    return `translateY(${translateY}%)`;
-                  })(),
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .startFade,
+                    bigPurchaseAnimations.floatingElement[currentDevice].endFade
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .startTransform,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .endTransform,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: 0,
+                      finalY: -100,
+                    }
+                  ),
                 }}
               >
                 <Image
@@ -736,6 +802,7 @@ const HomePage = () => {
                   }}
                 />
               </animated.div>
+
               <animated.div
                 style={{
                   position: "absolute",
@@ -744,19 +811,26 @@ const HomePage = () => {
                   width: isMobile ? "45%" : "20%",
                   aspectRatio: "1",
                   zIndex: 2,
-                  opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 17) return 0;
-                    if (progress > 18) return 1;
-                    return progress - 17;
-                  })(),
-                  transform: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 17) return "translateY(0%)";
-                    if (progress > 19) return "translateY(-70%)";
-                    const translateY = ((progress - 17) / 2) * -70;
-                    return `translateY(${translateY}%)`;
-                  })(),
+                  opacity: config.calculateOpacity(
+                    scrollProgress * config.pages.total,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .startFade + 0.3,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .endFade + 0.3
+                  ),
+                  transform: config.calculateTransform(
+                    scrollProgress * config.pages.total,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .startTransform + 0.3,
+                    bigPurchaseAnimations.floatingElement[currentDevice]
+                      .endTransform + 0.3,
+                    {
+                      initialScale: 1,
+                      finalScale: 1,
+                      initialY: 0,
+                      finalY: -100,
+                    }
+                  ),
                 }}
               >
                 <Image
@@ -773,7 +847,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 20, end: 22 }}
+          sticky={config.sections.allInOne.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -786,7 +860,7 @@ const HomePage = () => {
             <Box
               sx={{
                 position: "absolute",
-                left: "-15%",
+                left: config.sections.allInOne.layout.sideLabel.left,
                 top: "50%",
                 transform: "translateY(-50%) rotate(-90deg)",
                 textOrientation: "upright",
@@ -795,31 +869,28 @@ const HomePage = () => {
               <Typography
                 component="div"
                 color={palette.brand.default}
-                textTransform={"uppercase"}
+                textTransform="uppercase"
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontWeight: 400,
-                  fontSize: "15px",
+                  fontSize: config.sections.allInOne.layout.sideLabel.fontSize,
                 }}
               >
-                <Typography component="span" sx={{ marginRight: "16px" }}>
+                <Typography component="span" mr="16px">
                   03.
                 </Typography>
-                <Typography
-                  component="span"
-                  fontWeight={600}
-                  sx={{ marginRight: "16px" }}
-                >
+                <Typography component="span" fontWeight={600} mr="16px">
                   02. Credit + debit
                 </Typography>
                 <Typography component="span">01.</Typography>
               </Typography>
             </Box>
           )}
+
           <Grid
             container
-            padding={"0 20px"}
+            padding={config.sections.allInOne.layout[currentDevice].padding}
             sx={{ height: "100%" }}
             alignItems="center"
           >
@@ -843,28 +914,29 @@ const HomePage = () => {
                   fontSize={34}
                   fontWeight={700}
                   color={palette.brand.default}
-                  lineHeight={"34px"}
+                  lineHeight="34px"
                   mb={4}
                 >
                   All-in-one credit and debit virtual card
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#5F6563">
                   Just choose your preferred payment method before purchasing
-                  and experience seamless, flesxible spending.
+                  and experience seamless, flexible spending.
                 </Typography>
               </Box>
             </Grid>
+
             <Grid item xs={12} md={6}>
               <Box
-                height={isMobile ? "45vh" : "50vh"}
+                height={config.sections.allInOne.layout[currentDevice].height}
                 overflow="hidden"
-                style={{
+                sx={{
                   paddingRight: 4,
                 }}
               >
                 <Image
                   src="/all-in-one-card.jpg"
-                  alt="phone card screen"
+                  alt="all in one"
                   layout="responsive"
                   style={{ borderRadius: "35px" }}
                   width={500}
@@ -876,7 +948,7 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 23, end: 25 }}
+          sticky={config.sections.virtualCard.sticky}
           style={{
             display: "flex",
             alignItems: "center",
@@ -889,7 +961,7 @@ const HomePage = () => {
             <Box
               sx={{
                 position: "absolute",
-                left: "-15%",
+                left: config.sections.virtualCard.layout.sideLabel.left,
                 top: "50%",
                 transform: "translateY(-50%) rotate(-90deg)",
                 textOrientation: "upright",
@@ -898,27 +970,29 @@ const HomePage = () => {
               <Typography
                 component="div"
                 color={palette.brand.default}
-                textTransform={"uppercase"}
+                textTransform="uppercase"
                 sx={{
                   display: "flex",
                   alignItems: "center",
                   fontWeight: 400,
-                  fontSize: "15px",
+                  fontSize:
+                    config.sections.virtualCard.layout.sideLabel.fontSize,
                 }}
               >
-                <Typography component="span" mr={"16px"} fontWeight={600}>
+                <Typography component="span" mr="16px" fontWeight={600}>
                   03. Earn
                 </Typography>
-                <Typography component="span" mr={"16px"}>
+                <Typography component="span" mr="16px">
                   02.
                 </Typography>
                 <Typography component="span">01.</Typography>
               </Typography>
             </Box>
           )}
+
           <Grid
             container
-            padding={"0 20px"}
+            padding={config.sections.virtualCard.layout[currentDevice].padding}
             sx={{ height: "100%" }}
             alignItems="center"
           >
@@ -942,7 +1016,7 @@ const HomePage = () => {
                   fontSize={34}
                   fontWeight={700}
                   color={palette.brand.default}
-                  lineHeight={"34px"}
+                  lineHeight="34px"
                   mb={4}
                 >
                   Virtual card to spend in-store or online
@@ -953,41 +1027,44 @@ const HomePage = () => {
                 </Typography>
               </Box>
             </Grid>
+
             <Grid item xs={12} md={6}>
-              <animated.div
-                style={{
+              <Box
+                height={
+                  config.sections.virtualCard.layout[currentDevice].height
+                }
+                overflow="hidden"
+                sx={{
                   paddingRight: 4,
                 }}
               >
                 <Image
                   src="/virtual-card.jpg"
-                  alt="all in one"
+                  alt="virtual card"
                   layout="responsive"
                   style={{ borderRadius: "35px" }}
                   width={500}
                   height={500}
                 />
-              </animated.div>
+              </Box>
 
               <animated.div
                 style={{
                   position: "absolute",
-                  top: isMobile ? "85%" : "80%",
+                  top: isMobile ? "85%" : "70%",
                   right: "2%",
-                  width: isMobile ? "50%" : "15%",
+                  width: isMobile ? "50%" : "20%",
                   aspectRatio: "1",
                   zIndex: 2,
                   opacity: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 23) return 0;
-                    if (progress > 25) return 1;
-                    return (progress - 23) / 2;
+                    const progress = scrollProgress * config.pages.total;
+                    return progress >= 16.5 && progress <= 22 ? 1 : 0;
                   })(),
                   transform: (() => {
-                    const progress = scrollProgress * TOTAL_PAGES;
-                    if (progress < 23) return "translateY(0%)";
-                    if (progress > 25) return "translateY(-70%)";
-                    const translateY = ((progress - 23) / 2) * -70;
+                    const progress = scrollProgress * config.pages.total;
+                    if (progress < 17) return "translateY(0%)";
+                    if (progress > 19) return "translateY(-70%)";
+                    const translateY = ((progress - 17) / 2) * -70;
                     return `translateY(${translateY}%)`;
                   })(),
                 }}
@@ -1006,29 +1083,44 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={26}
-          factor={1.5}
+          offset={config.sections.steps.offset.start}
+          factor={config.sections.steps.offset.factor}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             maxWidth: "1152px",
+            height: "100vh",
             margin: "0 auto",
           }}
         >
           <Grid
             container
-            padding={"0 20px"}
-            spacing={4}
-            alignItems="center"
+            padding={config.sections.steps.layout[currentDevice].padding}
+            spacing={isMobile ? 2 : 4}
+            alignItems="flex-start"
             justifyContent="center"
+            sx={{
+              minHeight: isMobile ? "auto" : "100vh",
+            }}
           >
-            <Grid item xs={12} md={6}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                alignSelf: { xs: "flex-start", md: "center" },
+                mb: { xs: 2, md: 4 },
+              }}
+              maxHeight={isMobile ? "600px" : "100vh"}
+            >
               <Box textAlign="center">
                 <Typography
-                  fontSize={34}
+                  fontSize={
+                    config.sections.steps.layout[currentDevice].titleSize
+                  }
                   fontWeight={700}
-                  lineHeight={"40px"}
+                  lineHeight="40px"
                   mb={2}
                 >
                   Get your Exa Card and start using it in 4 simple steps
@@ -1036,44 +1128,33 @@ const HomePage = () => {
               </Box>
             </Grid>
 
-            <Grid item xs={12}>
-              <Grid container justifyContent="center" gap={2}>
-                {steps.map((style, index) => (
-                  <Grid item xs={12} md={2.5} key={steps[index].id}>
-                    <animated.div
-                      style={{
-                        opacity: (() => {
-                          const progress = scrollProgress * TOTAL_PAGES;
-                          const startPage = 26 + index * 0.15;
-                          const endPage = 26 + (index + 1) * 0.15;
-                          if (progress < startPage) return 0;
-                          if (progress > endPage) return 1;
-                          return (progress - startPage) / (endPage - startPage);
-                        })(),
-                        transform: (() => {
-                          const progress = scrollProgress * TOTAL_PAGES;
-                          const startPage = 26 + index * 0.15;
-                          const endPage = 26 + (index + 1) * 0.15;
-                          if (progress < startPage) return "translateY(20px)";
-                          if (progress > endPage) return "translateY(0px)";
-                          const translateY =
-                            20 -
-                            ((progress - startPage) / (endPage - startPage)) *
-                              20;
-                          return `translateY(${translateY}px)`;
-                        })(),
-
+            <Grid item xs={12} justifyContent="center">
+              <Grid
+                container
+                justifyContent="center"
+                gap={config.sections.steps.layout[currentDevice].gridSpacing}
+                sx={{
+                  mt: { xs: 0, md: 2 },
+                }}
+              >
+                {steps.map((step) => (
+                  <Grid item xs={12} md={2.5} key={step.id}>
+                    <Box
+                      sx={{
                         border: `1px solid ${palette.neutral.soft}`,
                         borderRadius: "16px",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        maxHeight: isMobile ? "260px" : "auto",
+                        maxHeight: {
+                          xs: config.sections.steps.layout.mobile.cardMaxHeight,
+                          md: "400px",
+                        },
                       }}
                     >
                       <Image
-                        src={steps[index].image}
-                        alt={steps[index].title}
+                        src={step.image}
+                        alt={step.title}
                         width={180}
                         height={180}
                       />
@@ -1082,29 +1163,29 @@ const HomePage = () => {
                         <Typography
                           fontSize={20}
                           fontWeight={600}
-                          lineHeight={"25px"}
+                          lineHeight="25px"
                           color={palette.brand.tertiary}
                         >
-                          {steps[index].id}
+                          {step.id}
                         </Typography>
                         <Typography
                           fontSize={22}
                           fontWeight={700}
-                          lineHeight={"28px"}
+                          lineHeight="28px"
                           color={palette.brand.default}
                         >
-                          {steps[index].title}
+                          {step.title}
                         </Typography>
                         <Typography
                           fontSize={13}
                           fontWeight={400}
-                          lineHeight={"18px"}
+                          lineHeight="18px"
                           color={palette.neutral.secondary}
                         >
-                          {steps[index].text}
+                          {step.text}
                         </Typography>
                       </Box>
-                    </animated.div>
+                    </Box>
                   </Grid>
                 ))}
               </Grid>
@@ -1113,8 +1194,8 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={27.5}
-          factor={1.5}
+          offset={config.sections.earnings.offset.start}
+          factor={config.sections.earnings.offset.factor}
           style={{
             display: "flex",
             flexDirection: "column",
@@ -1123,26 +1204,32 @@ const HomePage = () => {
             maxWidth: "1152px",
             margin: "0 auto",
             paddingTop: "50px",
-            gap: 20,
+            gap: 2,
           }}
         >
           <Grid
             container
             alignItems="center"
             justifyContent="center"
-            padding={"0 20px"}
-            gap={2}
+            padding={config.sections.earnings.layout[currentDevice].padding}
+            gap={config.sections.earnings.layout[currentDevice].spacing}
           >
             <Grid item xs={12} md={4} padding={"0 20px"}>
               <Box display="flex" flexDirection="column">
                 <Typography
-                  fontSize={isMobile ? 22 : 28}
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].titleSize
+                  }
                   fontWeight={700}
-                  lineHeight={"28px"}
+                  lineHeight="28px"
                 >
                   Start earning as soon as you add funds
                 </Typography>
-                <Typography fontSize={14}>
+                <Typography
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].subtitleSize
+                  }
+                >
                   Deposit your assets in the Exa App and earn APR along with
                   additional rewards.
                 </Typography>
@@ -1156,7 +1243,7 @@ const HomePage = () => {
                   alt="earnings"
                   layout="responsive"
                   width={340}
-                  height={308}
+                  height={300}
                   style={{ borderRadius: "24px" }}
                 />
               </Box>
@@ -1167,8 +1254,8 @@ const HomePage = () => {
             container
             alignItems="center"
             justifyContent="center"
-            padding={"0 20px"}
-            gap={2}
+            padding={config.sections.earnings.layout[currentDevice].padding}
+            gap={config.sections.earnings.layout[currentDevice].spacing}
           >
             <Grid
               item
@@ -1183,7 +1270,7 @@ const HomePage = () => {
                   alt="passkeys"
                   layout="responsive"
                   width={340}
-                  height={308}
+                  height={300}
                   style={{ borderRadius: "24px" }}
                 />
               </Box>
@@ -1196,15 +1283,21 @@ const HomePage = () => {
               padding={"0 30px"}
               order={{ xs: 1, md: 2 }}
             >
-              <Box display="flex" flexDirection="column" gap={"10px"}>
+              <Box display="flex" flexDirection="column" gap="10px">
                 <Typography
-                  fontSize={isMobile ? 22 : 28}
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].titleSize
+                  }
                   fontWeight={700}
-                  lineHeight={"28px"}
+                  lineHeight="28px"
                 >
                   Only you can access and control your assets
                 </Typography>
-                <Typography fontSize={14}>
+                <Typography
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].subtitleSize
+                  }
+                >
                   No third party is able to freeze, access, or manipulate your
                   assets. They are always accessible to you, protected by a
                   device-stored passkey, providing you with a easy-to-use,
@@ -1213,36 +1306,44 @@ const HomePage = () => {
               </Box>
             </Grid>
           </Grid>
+
           <Grid
             container
             alignItems="center"
             justifyContent="center"
-            padding={"0 20px"}
-            gap={2}
+            padding={config.sections.earnings.layout[currentDevice].padding}
+            gap={config.sections.earnings.layout[currentDevice].spacing}
           >
             <Grid item xs={12} md={4} padding={"0 20px"}>
-              <Box display="flex" flexDirection="column" gap={"10px"}>
+              <Box display="flex" flexDirection="column" gap="10px">
                 <Typography
-                  fontSize={isMobile ? 22 : 28}
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].titleSize
+                  }
                   fontWeight={700}
-                  lineHeight={"28px"}
+                  lineHeight="28px"
                 >
                   Seamless transition between crypto and your local currency
                 </Typography>
-                <Typography fontSize={14} fontWeight={400}>
+                <Typography
+                  fontSize={
+                    config.sections.earnings.layout[currentDevice].subtitleSize
+                  }
+                  fontWeight={400}
+                >
                   Easily deposit and withdraw to your local currency.
                 </Typography>
               </Box>
             </Grid>
 
             <Grid item xs={12} md={4} padding={"0 20px"}>
-              <Box display="flex" flexDirection="column" gap={"10px"}>
+              <Box display="flex" flexDirection="column">
                 <Image
                   src="/img/swap.svg"
                   alt="swap"
                   layout="responsive"
                   width={340}
-                  height={308}
+                  height={300}
                   style={{ borderRadius: "24px" }}
                 />
               </Box>
@@ -1251,7 +1352,8 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 29, end: 30 }}
+          offset={isMobile ? 24 : 22.5}
+          factor={1.5}
           style={{
             display: "flex",
             alignItems: "center",
@@ -1355,7 +1457,10 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          sticky={{ start: 31, end: 31.5 }}
+          sticky={{
+            start: isMobile ? 25.5 : 24,
+            end: isMobile ? 26.5 : 25,
+          }}
           style={{
             display: "flex",
             alignItems: "center",
@@ -1436,23 +1541,27 @@ const HomePage = () => {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={32.5}
-          factor={1}
+          sticky={{
+            start: isMobile ? 27.5 : 26,
+            end: isMobile ? 29 : 26.1,
+          }}
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
+            justifyContent: "flex-end",
             flexDirection: "column",
             maxWidth: "1152px",
             margin: "0 auto",
             padding: "0 20px",
+            marginBottom: "50px",
+            height: "99vh",
           }}
         >
           <Grid
             container
             spacing={4}
             border={"1px solid #CCF3EA"}
-            height={isMobile ? "750px" : "450px"}
+            height={isMobile ? "1050px" : "450px"}
             ml={0}
             sx={{
               backgroundColor: "#F3FBF9",
@@ -1589,7 +1698,7 @@ const HomePage = () => {
           </Grid>
           <Grid
             container
-            mt="auto"
+            mt={4}
             mb={4}
             justifyContent="space-between"
             spacing={2}
@@ -1733,4 +1842,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default NewLandingPage;
