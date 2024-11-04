@@ -754,7 +754,7 @@ const NewLandingPage = () => {
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#5F6563">
                   Keep your valuable assets and watch your portfolio grow while
-                  paying in up to 6 low interest installments in USD.
+                  paying in up to six fixed rated installments in USDC.
                 </Typography>
               </Box>
             </Grid>
