@@ -19,7 +19,6 @@ import Flyer from "../components/Flyer";
 import { useParallaxConfig } from "../hooks/useParallaxConfig";
 import { cards, carrouselImages, faqs, steps } from "../data";
 import TableComponent from "../components/TableComponent";
-import { pages } from "next/dist/build/templates/app-page";
 
 const NewLandingPage = () => {
   const parallaxRef = useRef<IParallax | null>(null);
@@ -100,7 +99,15 @@ const NewLandingPage = () => {
           offset={config.sections.sharedBackground.offset}
           factor={config.sections.sharedBackground.factor}
           style={{
-            backgroundColor: palette.brand.primary,
+            backgroundColor: "#F3FBF9",
+          }}
+        />
+
+        <ParallaxLayer
+          offset={isMobile ? 13 : 12.5}
+          factor={isMobile ? 7 : 8}
+          style={{
+            backgroundColor: "#F3FBF9",
           }}
         />
 
@@ -154,7 +161,7 @@ const NewLandingPage = () => {
                   position: "absolute",
                   top: isMobile ? "-26vh" : "-100px",
                   right: 0,
-                  width: isMobile ? "80%" : "100%",
+                  width: isMobile ? "80%" : "80%",
                   margin: isMobile ? "0 auto" : "0",
                   left: isMobile ? "0" : "auto",
                   opacity: config.calculateOpacity(
@@ -191,7 +198,7 @@ const NewLandingPage = () => {
                   position: "absolute",
                   top: isMobile ? "30%" : "0",
                   right: 0,
-                  width: isMobile ? "90%" : "100%",
+                  width: isMobile ? "90%" : "80%",
                   margin: isMobile ? "0 auto" : "0",
                   left: isMobile ? "0" : "auto",
                   opacity: config.calculateOpacity(
@@ -265,7 +272,7 @@ const NewLandingPage = () => {
                   ),
                 }}
               >
-                <Box>
+                <Box margin={"0 auto"} justifyContent="center">
                   <Typography fontSize={17} fontWeight={400} color="#5F6563">
                     For everyone, everywhere
                   </Typography>
@@ -301,7 +308,7 @@ const NewLandingPage = () => {
                   ),
                 }}
               >
-                <Box>
+                <Box width={isMobile ? "80%" : "100%"} margin={"0 auto"}>
                   <Image
                     src="/worldwide.svg"
                     alt="worldwide"
@@ -389,7 +396,7 @@ const NewLandingPage = () => {
                   ),
                 }}
               >
-                <Box>
+                <Box width={isMobile ? "80%" : "100%"} margin={"0 auto"}>
                   <Image
                     src="/fee.svg"
                     alt="fee"
@@ -476,7 +483,7 @@ const NewLandingPage = () => {
                   ),
                 }}
               >
-                <Box>
+                <Box width={isMobile ? "80%" : "100%"} margin={"0 auto"}>
                   <Image
                     src="/secure-transactions.svg"
                     alt="secure transactions"
@@ -523,7 +530,7 @@ const NewLandingPage = () => {
                 {i === 3 ? (
                   <Box
                     display="flex"
-                    width={isMobile ? "100%" : "50%"}
+                    width={isMobile ? "200%" : "100%"}
                     right={0}
                     position="absolute"
                   >
@@ -636,7 +643,7 @@ const NewLandingPage = () => {
                           ? `${palette.brand.soft}`
                           : `${palette.brand.primary}`,
                       borderRadius: "12px",
-                      height: "56px",
+                      height: isMobile ? "48px" : "56px",
                       justifyContent: isMobile ? "center" : "flex-start",
                       "&:hover": {
                         backgroundColor: `${palette.brand.soft}`,
@@ -753,7 +760,7 @@ const NewLandingPage = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Box sx={{ paddingRight: 4 }}>
+              <Box sx={{ paddingRight: isMobile ? 0 : 4 }}>
                 <Image
                   src="/img/installments.jpg"
                   alt="installments"
@@ -931,7 +938,7 @@ const NewLandingPage = () => {
                 height={config.sections.allInOne.layout[currentDevice].height}
                 overflow="hidden"
                 sx={{
-                  paddingRight: 4,
+                  paddingRight: isMobile ? 0 : 4,
                 }}
               >
                 <Image
@@ -1035,7 +1042,7 @@ const NewLandingPage = () => {
                 }
                 overflow="hidden"
                 sx={{
-                  paddingRight: 4,
+                  paddingRight: isMobile ? 0 : 4,
                 }}
               >
                 <Image
@@ -1146,18 +1153,25 @@ const NewLandingPage = () => {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
+                        justifyContent: "center",
+                        paddingTop: 3,
                         maxHeight: {
                           xs: config.sections.steps.layout.mobile.cardMaxHeight,
                           md: "400px",
                         },
                       }}
                     >
-                      <Image
-                        src={step.image}
-                        alt={step.title}
-                        width={180}
-                        height={180}
-                      />
+                      <Box
+                        minHeight={isMobile ? "20px " : "200px"}
+                        alignContent="center"
+                      >
+                        <Image
+                          src={step.image}
+                          alt={step.title}
+                          width={step.id === 2 ? 120 : 180}
+                          height={step.id === 2 ? 100 : 180}
+                        />
+                      </Box>
 
                       <Box sx={{ padding: 3 }}>
                         <Typography
@@ -1204,7 +1218,7 @@ const NewLandingPage = () => {
             maxWidth: "1152px",
             margin: "0 auto",
             paddingTop: "50px",
-            gap: 2,
+            gap: 80,
           }}
         >
           <Grid
@@ -1339,7 +1353,7 @@ const NewLandingPage = () => {
             <Grid item xs={12} md={4} padding={"0 20px"}>
               <Box display="flex" flexDirection="column">
                 <Image
-                  src="/img/swap.svg"
+                  src="/img/swap.jpg"
                   alt="swap"
                   layout="responsive"
                   width={340}

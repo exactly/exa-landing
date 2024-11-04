@@ -13,7 +13,6 @@ import Image from "next/image";
 const Flyer = () => {
   const { palette, breakpoints } = useTheme();
   const isMobile = useMediaQuery(breakpoints.down("sm"));
-  const isTablet = useMediaQuery(breakpoints.down("md"));
 
   return (
     <ParallaxLayer offset={0} factor={1.1}>
@@ -45,21 +44,21 @@ const Flyer = () => {
             left: "50%",
             right: 0,
             bottom: 0,
-            width: "100vw",
+            width: "140vw",
             transform: "translateX(-50%)",
             backgroundImage: 'url("/hero-postnet-paying.png")',
             backgroundRepeat: "no-repeat",
             backgroundPosition: {
               xs: "center center",
-              sm: "50% 10%",
-              md: "50% 20%",
-              lg: "50% 30%",
+              sm: "20% 0%",
+              md: "10% 20%",
+              lg: "100% 60%",
             },
             backgroundSize: {
               xs: "auto 130vh",
-              sm: "cover",
-              md: "cover",
-              lg: "cover",
+              sm: "150% auto",
+              md: "120% auto",
+              lg: "90% auto",
             },
             zIndex: -1,
           },
@@ -71,8 +70,8 @@ const Flyer = () => {
             right: 0,
             bottom: 0,
             background: {
-              xs: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 20%, rgba(255, 255, 255, 1) 60%)",
-              sm: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 40%, rgba(255, 255, 255, 0.95) 80%)",
+              xs: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 80%, rgba(255, 255, 255, 1) 90%)",
+              sm: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 80%, rgba(255, 255, 255, 0.95) 95%)",
               md: "linear-gradient(79deg, rgba(0, 0, 0, 0.50) -9.9%, rgba(0, 0, 0, 0.00) 49.77%)",
             },
             zIndex: -1,
@@ -128,7 +127,7 @@ const Flyer = () => {
                     sx={{
                       fontSize: "2rem",
                       fontWeight: 700,
-                      color: "#000",
+                      color: palette.brand.primary,
                       lineHeight: 1.2,
                     }}
                   >
@@ -210,7 +209,7 @@ const Flyer = () => {
                       gap: 3,
                       alignItems: "center",
                       justifyContent: "center",
-                      mt: 2,
+                      my: 2,
                     }}
                   >
                     {["visa", "apple-pay", "google-pay"].map((brand) => (

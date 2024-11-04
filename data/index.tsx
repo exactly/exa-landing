@@ -4,14 +4,14 @@ export const steps = [
   {
     id: 1,
     image: "/exa-card.svg",
-    title: "Download",
-    text: "Get Exa App, available for iOS and Android.",
+    title: "Enable",
+    text: "Verify your identity and enable the Exa Card",
   },
   {
     id: 2,
-    image: "/exa-card.svg",
-    title: "Enable",
-    text: "Verify your identity and enable the Exa Card.",
+    image: "/arrow-down-to-line.svg",
+    title: "Top-up",
+    text: "Add funds to your Exa App account",
   },
   {
     id: 3,
@@ -210,7 +210,7 @@ export const carrouselImages = [
       "Say goodbye to transaction fees, no costs for card issurance, maintenance or usage.",
   },
   {
-    src: "/carrousel/carrousel-4.svg",
+    src: "/carrousel/carrousel-4.png",
     alt: "carrousel-4",
     icon: "/icons/file-check.svg",
     buttonText: "No credit score check",
