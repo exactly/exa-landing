@@ -515,6 +515,7 @@ const NewLandingPage = () => {
               width: "100%",
               height: "100%",
               borderRadius: "32px",
+              border: `1px solid ${palette.neutral.soft}`,
             }}
           >
             {transitions((style, i) => (
@@ -1253,7 +1254,7 @@ const NewLandingPage = () => {
             <Grid item xs={12} md={4} padding={"0 20px"}>
               <Box display="flex" flexDirection="column">
                 <Image
-                  src="/img/earnings.jpg"
+                  src="/img/earning.jpg"
                   alt="earnings"
                   layout="responsive"
                   width={340}
@@ -1353,7 +1354,7 @@ const NewLandingPage = () => {
             <Grid item xs={12} md={4} padding={"0 20px"}>
               <Box display="flex" flexDirection="column">
                 <Image
-                  src="/img/swap.jpg"
+                  src="/img/swaps.svg"
                   alt="swap"
                   layout="responsive"
                   width={340}
@@ -1489,6 +1490,7 @@ const NewLandingPage = () => {
             spacing={4}
             alignItems="center"
             justifyContent="center"
+            flexDirection="column"
           >
             <Grid item xs={12}>
               <Box textAlign="center">
@@ -1550,6 +1552,39 @@ const NewLandingPage = () => {
                   </AccordionDetails>
                 </Accordion>
               ))}
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <Button
+                variant="outlined"
+                color="primary"
+                href="https://intercom.help/exa-labs/en"
+                target="_blank"
+                rel="noreferrer noopener"
+                fullWidth
+                sx={(theme) => ({
+                  backgroundColor: theme.palette.brand.soft,
+                  color: theme.palette.brand.default,
+                  border: `none`,
+                  borderRadius: "12px",
+                  height: "60px",
+                  "&:hover": {
+                    border: `1px solid ${theme.palette.brand.default}`,
+                    backgroundColor: theme.palette.brand.soft,
+                  },
+                })}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  <Typography fontSize={15} fontWeight={600}>
+                    View all FAQs
+                  </Typography>
+                  <Image
+                    src="/icons/arrow-out.svg"
+                    alt="x icon"
+                    width={20}
+                    height={20}
+                  />
+                </Box>
+              </Button>
             </Grid>
           </Grid>
         </ParallaxLayer>
