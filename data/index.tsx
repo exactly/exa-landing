@@ -70,7 +70,7 @@ export const cards = [
       },
       {
         icon: "/icons/columns-4.svg",
-        text: "installments",
+        text: "Installments",
       },
       {
         icon: "/icons/file-text.svg",
@@ -122,7 +122,7 @@ export const cards = [
     ],
   },
   {
-    title: "Onchain Cards",
+    title: "DeFi Cards",
     image: "/cards/onchain-card.svg",
     features: [
       {
@@ -135,7 +135,7 @@ export const cards = [
       },
       {
         icon: "/icons/cross-circle.svg",
-        text: "Credit line backed with your crypto",
+        text: "No credit line",
       },
       {
         icon: "/icons/key.svg",
