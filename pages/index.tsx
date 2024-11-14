@@ -1557,7 +1557,7 @@ const NewLandingPage = () => {
               <Button
                 variant="outlined"
                 color="primary"
-                href="https://intercom.help/exa-labs/en"
+                href="https://intercom.help/exa-app/en"
                 target="_blank"
                 rel="noreferrer noopener"
                 fullWidth
