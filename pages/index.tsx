@@ -1791,7 +1791,11 @@ const NewLandingPage = () => {
               gap={1}
             >
               <Box>
-                <Link href={"/t&c"}>
+                <Link
+                  href="https://intercom.help/exa-app/en/collections/10544608-terms-and-conditions"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
                   <Typography
                     component="span"
                     fontSize={12}
@@ -1802,9 +1806,19 @@ const NewLandingPage = () => {
                 </Link>
               </Box>
               <Box>
-                <Typography fontSize={12} color={palette.neutral.secondary}>
-                  Privacy Policy
-                </Typography>
+                <Link
+                  href="https://intercom.help/exa-app/en/articles/9945134-privacy-policy"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Typography
+                    component="span"
+                    fontSize={12}
+                    color={palette.neutral.secondary}
+                  >
+                    Privacy Policy
+                  </Typography>
+                </Link>
               </Box>
               <Box>
                 <Link
