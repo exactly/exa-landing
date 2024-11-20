@@ -278,8 +278,9 @@ const Flyer = () => {
                       mb: 3,
                     }}
                   >
-                    Use your ETH as collateral for your credit line and split
-                    your payments in up to 6 fixed rate installments in USDC.
+                    Use your crypto assets as collateral for your credit line
+                    and split your payments in up to 6 fixed rate installments
+                    in USDC.
                   </Typography>
                 </Box>
 
