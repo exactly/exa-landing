@@ -46,7 +46,7 @@ export const cards = [
       },
       {
         icon: "/icons/key.svg",
-        text: "Self-cutodial",
+        text: "Self-custodial",
       },
       {
         icon: "/icons/smartphone.svg",
