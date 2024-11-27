@@ -1,4 +1,4 @@
-import { title } from "process";
+import Link from "@mui/material/Link";
 
 export const steps = [
   {
@@ -167,6 +167,28 @@ export const faqs = [
     question: "What fees are asosciated with the usage of the Exa Card?",
     answer:
       "There is no fee associated with the issuance of the card or maintenance of any kind; it’s completely free to get and maintain your Exa Card.\n\nThere is no Gas fees for onchain transactions since we will be sponsoring Gas.\n\nFor debit card purchases made in USD, there are no fees asociated.\n\nFor purchases made in other currencies, there is a 1.5% fee included in the currency rates.",
+  },
+  {
+    question: "What’s the Exa Card's conversion rate for non-USD purchases?",
+    answer: (
+      <>
+        The currency of the Exa Card is USD. Every purchase you make in a
+        currency other than USD will be charged a 1.5% FX fee for the currency
+        conversion.
+        {"\n\n"}
+        You can check the currency conversion rate in this{" "}
+        <Link
+          href="https://usa.visa.com/support/consumer/travel-support/exchange-rate-calculator.html"
+          target="_blank"
+          rel="noreferrer noopener"
+          underline="always"
+          color={"#0070f3"}
+        >
+          link
+        </Link>
+        {" Be sure that the 'Bank fee' is 1.5%."}
+      </>
+    ),
   },
   {
     question: "Is there a physical card?",
