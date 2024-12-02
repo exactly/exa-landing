@@ -1843,32 +1843,20 @@ const NewLandingPage = () => {
               md={4}
               sx={{
                 display: "flex",
-                flexDirection: "column-reverse",
+                flexDirection: "column",
                 justifyContent: { xs: "center", md: "space-between" },
                 alignItems: { xs: "start", md: "end" },
                 textAlign: "center",
               }}
               gap={1}
             >
-              {/* <Box
+              <Box
                 display="flex"
                 gap={3}
                 sx={isMobile && { justifyContent: "center" }}
               >
                 <Link
-                  href="https://docs.exact.ly/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <Image
-                    src="/footer/x-logo.svg"
-                    alt="x logo"
-                    width={60}
-                    height={24}
-                  />
-                </Link>
-                <Link
-                  href="https://docs.exact.ly/"
+                  href="https://discord.gg/fBdVmbH38Y"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
@@ -1879,19 +1867,7 @@ const NewLandingPage = () => {
                     height={24}
                   />
                 </Link>
-                <Link
-                  href="https://docs.exact.ly/"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <Image
-                    src="/footer/telegram.svg"
-                    alt="telegram logo"
-                    width={60}
-                    height={24}
-                  />
-                </Link>
-              </Box> */}
+              </Box>
               <Box>
                 <Typography fontSize={12} color={palette.neutral.secondary}>
                   {`  © ${new Date().getFullYear()} Exa Labs SAS. All rights reserved.`}

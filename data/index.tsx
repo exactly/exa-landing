@@ -204,7 +204,7 @@ export const faqs = [
   {
     question: "Where is the Exa Card Available?",
     answer:
-      "The Exa Card is available worldwide, the only countries where it is not available are:\n\nAfganistán, Belarus, Bulgaria, Burundi, North Korea, Croatia, Cuba, Eritrea, Ethiopia, Guinea-Bisáu, Haiti, Iraq, Iran, Lebanon, Liberia, Libya, Mali, Myanmar, Nicaragua, Centroafrican Republic, Democratic Republic of the Congo, Rwanda, Russia, Sierra Leona, Syria, Somalia, Sudan, South Sudan, Ucrania, Venezuela, Yemen, Zimbabwe and the United States.",
+      "The Exa Card is available worldwide, the only countries where it is not available are:\n\nAfganistán, Belarus, Bulgaria, Burundi, North Korea, Croatia, Cuba, Eritrea, Ethiopia, Guinea-Bisáu, Haiti, Iraq, Iran, Lebanon, Liberia, Libya, Mali, Myanmar, Nicaragua, Centroafrican Republic, Democratic Republic of the Congo, Rwanda, Russia, Sierra Leona, Syria, Somalia, Sudan, South Sudan, Ucrania, Venezuela, Yemen and Zimbabwe.",
   },
 ];
 
