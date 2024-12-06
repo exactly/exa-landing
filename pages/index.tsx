@@ -1745,13 +1745,7 @@ const NewLandingPage = () => {
               </Box>
             </Grid>
           </Grid>
-          <Grid
-            container
-            mt={4}
-            mb={4}
-            justifyContent="space-between"
-            spacing={2}
-          >
+          <Grid container mt={4} justifyContent="space-between" spacing={2}>
             <Grid item xs={12} md={4} gap={1}>
               <Box>
                 <Image
@@ -1873,6 +1867,14 @@ const NewLandingPage = () => {
                   {`  © ${new Date().getFullYear()} Exa Labs SAS. All rights reserved.`}
                 </Typography>
               </Box>
+            </Grid>
+          </Grid>
+          <Grid container mt={1} mb={4} justifyContent="center">
+            <Grid item alignContent="right">
+              <Typography fontSize={12} color={palette.neutral.secondary}>
+                Exa Labs financial partners and related subsidiaries provide
+                card-issuing services.
+              </Typography>
             </Grid>
           </Grid>
         </ParallaxLayer>
