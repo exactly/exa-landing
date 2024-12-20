@@ -1850,6 +1850,18 @@ const NewLandingPage = () => {
                 sx={isMobile && { justifyContent: "center" }}
               >
                 <Link
+                  href="https://medium.com/@exa.app"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Image
+                    src="/footer/medium.svg"
+                    alt="medium logo"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+                <Link
                   href="https://discord.gg/fBdVmbH38Y"
                   target="_blank"
                   rel="noreferrer noopener"
@@ -1857,7 +1869,7 @@ const NewLandingPage = () => {
                   <Image
                     src="/footer/discord.svg"
                     alt="discord logo"
-                    width={60}
+                    width={24}
                     height={24}
                   />
                 </Link>
