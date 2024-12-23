@@ -1387,7 +1387,7 @@ const NewLandingPage = () => {
             <Grid item xs={12} md={6} mt={2}>
               <Box textAlign="center">
                 <Typography fontSize={isMobile ? 24 : 34} fontWeight={700}>
-                  Exa Cards vs Alternatives
+                  Exa Card vs Alternatives
                 </Typography>
               </Box>
             </Grid>
