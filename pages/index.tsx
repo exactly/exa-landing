@@ -1816,7 +1816,7 @@ const NewLandingPage = () => {
               </Box>
               <Box>
                 <Link
-                  href="https://docs.exact.ly/"
+                  href="https://docs.exact.ly/exa-app/"
                   target="_blank"
                   rel="noreferrer noopener"
                 >
