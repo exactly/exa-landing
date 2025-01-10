@@ -1646,11 +1646,11 @@ const NewLandingPage = () => {
                 my={isMobile ? 2 : 9}
                 alignItems="center"
               >
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={4.5}>
                   <Button
                     variant="contained"
                     fullWidth
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSer9ldKEw9mFmImaBxkJzSBwIVY63-dJAObRlfF7zVnZk1KFQ/viewform?usp=sf_link"
+                    href="https://discord.gg/fBdVmbH38Y"
                     target="_blank"
                     rel="noreferrer noopener"
                     sx={() => ({
@@ -1665,7 +1665,7 @@ const NewLandingPage = () => {
                   >
                     <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                       <Typography fontSize={15} fontWeight={600}>
-                        Join waitlist
+                        Get early access
                       </Typography>
                       <Image
                         src="/icons/waitlist.svg"
@@ -1676,7 +1676,7 @@ const NewLandingPage = () => {
                     </Box>
                   </Button>
                 </Grid>
-                <Grid item xs={12} md={4}>
+                <Grid item xs={12} md={4.5}>
                   <Button
                     variant="outlined"
                     color="primary"

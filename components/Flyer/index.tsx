@@ -141,7 +141,7 @@ const Flyer = () => {
                       <Button
                         variant="contained"
                         fullWidth
-                        href="https://docs.google.com/forms/d/e/1FAIpQLSer9ldKEw9mFmImaBxkJzSBwIVY63-dJAObRlfF7zVnZk1KFQ/viewform"
+                        href="https://discord.gg/fBdVmbH38Y"
                         target="_blank"
                         rel="noreferrer noopener"
                         sx={{
@@ -158,7 +158,7 @@ const Flyer = () => {
                           sx={{ display: "flex", alignItems: "center", gap: 1 }}
                         >
                           <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                            Join waitlist
+                            Get early access
                           </Typography>
                           <Image
                             src="/icons/waitlist.svg"
@@ -289,7 +289,7 @@ const Flyer = () => {
                     <Button
                       variant="contained"
                       fullWidth
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSer9ldKEw9mFmImaBxkJzSBwIVY63-dJAObRlfF7zVnZk1KFQ/viewform"
+                      href="https://discord.gg/fBdVmbH38Y"
                       target="_blank"
                       rel="noreferrer noopener"
                       sx={{
@@ -303,10 +303,10 @@ const Flyer = () => {
                       }}
                     >
                       <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
+                        sx={{ display: "flex", alignItems: "center", gap: 0.5 }}
                       >
                         <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                          Join waitlist
+                          Get early access
                         </Typography>
                         <Image
                           src="/icons/waitlist.svg"
