@@ -164,7 +164,7 @@ export const faqs = [
     answer: "The Exa Card is issued in Hong Kong.",
   },
   {
-    question: "What fees are asosciated with the usage of the Exa Card?",
+    question: "What fees are associated with the usage of the Exa Card?",
     answer:
       "There is no fee associated with the issuance of the card or maintenance of any kind; it’s completely free to get and maintain your Exa Card.\n\nThere is no Gas fees for onchain transactions since we will be sponsoring Gas.\n\nFor debit card purchases made in USD, there are no fees asociated.\n\nFor purchases made in other currencies, there is a 1.5% fee included in the currency rates.",
   },
