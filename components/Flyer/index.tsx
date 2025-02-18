@@ -131,9 +131,9 @@ const Flyer = () => {
                       lineHeight: 1.2,
                     }}
                   >
-                    Buy now, pay later
+                    Onchain banking,
                     <br />
-                    and hold your crypto.
+                    today.
                   </Typography>
 
                   <Grid container spacing={2}>
@@ -266,9 +266,9 @@ const Flyer = () => {
                       mb: 2,
                     }}
                   >
-                    Buy now, pay later
+                    Onchain banking,
                     <br />
-                    and hold your crypto.
+                    today.
                   </Typography>
 
                   <Typography

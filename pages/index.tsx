@@ -1627,7 +1627,7 @@ const NewLandingPage = () => {
                     color: palette.brand.default,
                   })}
                 >
-                  Buy now, pay later
+                  Onchain banking,
                 </Typography>
                 <Typography
                   fontSize={{ xs: 32, md: 48 }}
@@ -1637,7 +1637,7 @@ const NewLandingPage = () => {
                   })}
                   mb={isMobile ? 2 : 6}
                 >
-                  and hold your crypto.
+                  today.
                 </Typography>
               </Box>
               <Grid
