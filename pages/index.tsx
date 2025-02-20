@@ -136,21 +136,17 @@ const NewLandingPage = () => {
                   fontWeight={400}
                   color="#5F6563"
                 >
-                  Introducing
+                  Spend in the real world
                 </Typography>
                 <Typography
                   fontSize={{ xs: 28, md: 34 }}
                   fontWeight={700}
                   color="#1A211E"
                 >
-                  The first onchain
+                  Use your onchain
                 </Typography>
-                <Typography
-                  fontSize={{ xs: 28, md: 34 }}
-                  fontWeight={700}
-                  color="#12A594"
-                >
-                  debit and credit card
+                <Typography fontSize={{ xs: 28, md: 34 }} fontWeight={700}>
+                  assets <span style={{ color: "#12A594" }}>everywhere</span>
                 </Typography>
               </Box>
             </Grid>
@@ -751,11 +747,12 @@ const NewLandingPage = () => {
                   lineHeight="34px"
                   mb={4}
                 >
-                  Big purchase? Split it in up to 6 installments
+                  Big purchase? Use Split Pay and pay in your terms
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#5F6563">
-                  Keep your valuable assets and watch your portfolio grow while
-                  paying in up to six fixed rated installments in USDC.
+                  Turn on Split Pay to break your purchases into multiple
+                  installments. Exactly Protocol offers up to 6 fixed,
+                  low-interest loans in USDC.
                 </Typography>
               </Box>
             </Grid>
@@ -889,7 +886,7 @@ const NewLandingPage = () => {
                   03.
                 </Typography>
                 <Typography component="span" fontWeight={600} mr="16px">
-                  02. Credit + debit
+                  02. ONCHAIN CREDIT
                 </Typography>
                 <Typography component="span">01.</Typography>
               </Typography>
@@ -925,11 +922,10 @@ const NewLandingPage = () => {
                   lineHeight="34px"
                   mb={4}
                 >
-                  All-in-one credit and debit virtual card
+                  Get onchain, fixed-rate credit instantly
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#5F6563">
-                  Just choose your preferred payment method before purchasing
-                  and experience seamless, flexible spending.
+                  Borrow USDC securely through Exactly Protocol, in minutes.
                 </Typography>
               </Box>
             </Grid>
@@ -988,7 +984,7 @@ const NewLandingPage = () => {
                 }}
               >
                 <Typography component="span" mr="16px" fontWeight={600}>
-                  03. Earn
+                  03. VIRTUAL CARD
                 </Typography>
                 <Typography component="span" mr="16px">
                   02.

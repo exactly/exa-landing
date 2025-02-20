@@ -278,9 +278,8 @@ const Flyer = () => {
                       mb: 3,
                     }}
                   >
-                    Use your crypto assets as collateral for your credit line
-                    and split your payments in up to 6 fixed rate installments
-                    in USDC.
+                    Unlock the power of your onchain assets: Earn, spend, borrow
+                    - all with the Exa App, powered by Exactly Protocol.
                   </Typography>
                 </Box>
 

@@ -34,11 +34,11 @@ export const cards = [
     features: [
       {
         icon: "/icons/credit-card.svg",
-        text: "All-in-one debit and credit card",
+        text: "Virtual card",
       },
       {
         icon: "/icons/columns-4.svg",
-        text: "Up to 6 installments",
+        text: "Up to 6 installments with Split Pay",
       },
       {
         icon: "/icons/bitcoin.svg",
