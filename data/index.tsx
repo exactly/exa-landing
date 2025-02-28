@@ -222,8 +222,8 @@ export const carrouselImages = [
     src: "/carrousel/carrousel-2.png",
     alt: "carrousel-2",
     icon: "/icons/globe.svg",
-    buttonText: "180+ countries",
-    title: "Available worldwide in 180+ countries.",
+    buttonText: "160+ countries",
+    title: "Available worldwide in 160+ countries.",
     subtitle:
       "Create an account, enable your virtual card and start spending right with your smartphone.",
   },

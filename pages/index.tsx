@@ -276,7 +276,7 @@ const NewLandingPage = () => {
                     Available worldwide
                   </Typography>
                   <Typography fontSize={34} fontWeight={700} color="#12A594">
-                    in 180+ countries
+                    in 160+ countries
                   </Typography>
                 </Box>
               </animated.div>
@@ -939,7 +939,7 @@ const NewLandingPage = () => {
                 }}
               >
                 <Image
-                  src="/all-in-one-card.jpg"
+                  src="/all-in-one-card.png"
                   alt="all in one"
                   layout="responsive"
                   style={{ borderRadius: "35px" }}

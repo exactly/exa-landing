@@ -1,8 +1,8 @@
 import React from "react";
 import {
   Box,
-  Button,
   Grid,
+  Link,
   Typography,
   useMediaQuery,
   useTheme,
@@ -55,7 +55,7 @@ const Flyer = () => {
               lg: "100% 60%",
             },
             backgroundSize: {
-              xs: "auto 130vh",
+              xs: "auto 120vh",
               sm: "150% auto",
               md: "120% auto",
               lg: "90% auto",
@@ -121,7 +121,14 @@ const Flyer = () => {
                   mt: "auto",
                 }}
               >
-                <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    gap: 4,
+                  }}
+                >
                   <Typography
                     variant="h1"
                     sx={{
@@ -129,6 +136,7 @@ const Flyer = () => {
                       fontWeight: 700,
                       color: palette.brand.primary,
                       lineHeight: 1.2,
+                      px: "3px",
                     }}
                   >
                     Onchain banking,
@@ -136,70 +144,49 @@ const Flyer = () => {
                     today.
                   </Typography>
 
-                  <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                      <Button
-                        variant="contained"
-                        fullWidth
-                        href="https://discord.gg/fBdVmbH38Y"
-                        target="_blank"
-                        rel="noreferrer noopener"
+                  <Grid
+                    container
+                    alignItems="center"
+                    justifyContent="space-between"
+                  >
+                    <Grid>
+                      <Typography
                         sx={{
-                          backgroundColor: palette.brand.default,
-                          color: palette.brand.soft,
-                          borderRadius: "12px",
-                          height: "60px",
-                          "&:hover": {
-                            backgroundColor: palette.brand.default,
-                          },
+                          color: "white",
+                          fontSize: "17px",
+                          px: "3px",
+                          marginBottom: "5px",
                         }}
                       >
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                            Get early access
-                          </Typography>
-                          <Image
-                            src="/icons/waitlist.svg"
-                            alt="notebook pen icon"
-                            width={20}
-                            height={20}
-                          />
-                        </Box>
-                      </Button>
+                        Join our open beta, and download the Exa App now!
+                      </Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                      <Button
-                        variant="outlined"
-                        fullWidth
-                        href="https://twitter.com/Exa_App"
+                    <Grid>
+                      <Link
+                        href="https://testflight.apple.com/join/G2fD3Hkv"
                         target="_blank"
                         rel="noreferrer noopener"
-                        sx={(theme) => ({
-                          backgroundColor: theme.palette.brand.soft,
-                          color: theme.palette.brand.default,
-                          borderRadius: "12px",
-                          height: "60px",
-                          "&:hover": {
-                            backgroundColor: theme.palette.brand.soft,
-                          },
-                        })}
                       >
-                        <Box
-                          sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                        >
-                          <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                            Follow us
-                          </Typography>
-                          <Image
-                            src="/icons/x.svg"
-                            alt="x icon"
-                            width={20}
-                            height={20}
-                          />
-                        </Box>
-                      </Button>
+                        <Image
+                          src="/hero/testflight.svg"
+                          alt="testflight logo"
+                          width="144"
+                          height="48"
+                        />
+                      </Link>
+
+                      <Link
+                        href="https://play.google.com/store/apps/details?id=app.exactly"
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        <Image
+                          src="/hero/google-store.svg"
+                          alt="google store logo"
+                          width="162"
+                          height="48"
+                        />
+                      </Link>
                     </Grid>
                   </Grid>
 
@@ -209,7 +196,7 @@ const Flyer = () => {
                       gap: 3,
                       alignItems: "center",
                       justifyContent: "center",
-                      my: 2,
+                      mb: 1,
                     }}
                   >
                     {["visa", "apple-pay", "google-pay"].map((brand) => (
@@ -217,8 +204,8 @@ const Flyer = () => {
                         key={brand}
                         src={`hero/${brand}.svg`}
                         alt={brand}
-                        width={60}
-                        height={24}
+                        width={30}
+                        height={12}
                         style={{
                           maxWidth: "100%",
                           height: "auto",
@@ -275,78 +262,53 @@ const Flyer = () => {
                     sx={{
                       fontSize: "1.0625rem",
                       color: "white",
+                      width: "80%",
                       mb: 3,
                     }}
                   >
-                    Unlock the power of your onchain assets: Earn, spend, borrow
+                    Unlock the power of your onchain assets: Earn, spend, borrow
                     - all with the Exa App, powered by Exactly Protocol.
                   </Typography>
                 </Box>
 
-                <Grid container spacing={2} sx={{ mb: 6 }}>
-                  <Grid item md={4}>
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      href="https://discord.gg/fBdVmbH38Y"
+                <Grid container sx={{ mb: 15 }}>
+                  <Typography
+                    sx={{
+                      color: "white",
+                      fontSize: "17px",
+                      px: "3px",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Join our open beta, and download the Exa App now!
+                  </Typography>
+                  <Grid item md={3.5}>
+                    <Link
+                      href="https://testflight.apple.com/join/G2fD3Hkv"
                       target="_blank"
                       rel="noreferrer noopener"
-                      sx={{
-                        backgroundColor: palette.brand.default,
-                        color: palette.brand.soft,
-                        borderRadius: "12px",
-                        height: "60px",
-                        "&:hover": {
-                          backgroundColor: palette.brand.default,
-                        },
-                      }}
                     >
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 0.5 }}
-                      >
-                        <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                          Get early access
-                        </Typography>
-                        <Image
-                          src="/icons/waitlist.svg"
-                          alt="notebook pen icon"
-                          width={20}
-                          height={20}
-                        />
-                      </Box>
-                    </Button>
+                      <Image
+                        src="/hero/testflight.svg"
+                        alt="testflight logo"
+                        width="144"
+                        height="48"
+                      />
+                    </Link>
                   </Grid>
                   <Grid item md={4}>
-                    <Button
-                      variant="outlined"
-                      fullWidth
-                      href="https://twitter.com/Exa_App"
+                    <Link
+                      href="https://play.google.com/store/apps/details?id=app.exactly"
                       target="_blank"
                       rel="noreferrer noopener"
-                      sx={(theme) => ({
-                        backgroundColor: theme.palette.brand.soft,
-                        color: theme.palette.brand.default,
-                        borderRadius: "12px",
-                        height: "60px",
-                        "&:hover": {
-                          backgroundColor: theme.palette.brand.soft,
-                        },
-                      })}
                     >
-                      <Box
-                        sx={{ display: "flex", alignItems: "center", gap: 1 }}
-                      >
-                        <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
-                          Follow us
-                        </Typography>
-                        <Image
-                          src="/icons/x.svg"
-                          alt="x icon"
-                          width={20}
-                          height={20}
-                        />
-                      </Box>
-                    </Button>
+                      <Image
+                        src="/hero/google-store.svg"
+                        alt="google store logo"
+                        width="162"
+                        height="48"
+                      />
+                    </Link>
                   </Grid>
                 </Grid>
 
