@@ -184,7 +184,7 @@ const Flyer = () => {
                         <Image
                           src="/hero/google-store.svg"
                           alt="google store logo"
-                          width="162"
+                          width="144"
                           height="48"
                         />
                       </Link>
@@ -306,7 +306,7 @@ const Flyer = () => {
                       <Image
                         src="/hero/google-store.svg"
                         alt="google store logo"
-                        width="162"
+                        width="144"
                         height="48"
                       />
                     </Link>
