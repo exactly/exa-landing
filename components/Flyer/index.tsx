@@ -144,24 +144,25 @@ const Flyer = () => {
                     today.
                   </Typography>
 
-                  <Grid
-                    container
-                    alignItems="center"
-                    justifyContent="space-between"
-                  >
-                    <Grid>
-                      <Typography
-                        sx={{
-                          color: "white",
-                          fontSize: "17px",
-                          px: "3px",
-                          marginBottom: "5px",
-                        }}
-                      >
-                        Join our open beta, and download the Exa App now!
-                      </Typography>
-                    </Grid>
-                    <Grid>
+                  <Box>
+                    <Typography
+                      sx={{
+                        color: "white",
+                        fontSize: "17px",
+                        px: "3px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Join our open beta, and download the Exa App now!
+                    </Typography>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        gap: 2,
+                        flexWrap: "wrap",
+                      }}
+                    >
                       <Link
                         href="https://testflight.apple.com/join/G2fD3Hkv"
                         target="_blank"
@@ -187,8 +188,8 @@ const Flyer = () => {
                           height="48"
                         />
                       </Link>
-                    </Grid>
-                  </Grid>
+                    </Box>
+                  </Box>
 
                   <Box
                     sx={{

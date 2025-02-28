@@ -1599,7 +1599,7 @@ const NewLandingPage = () => {
             margin: "0 auto",
             padding: "0 20px",
             marginBottom: "50px",
-            height: "99vh",
+            height: "120vh",
           }}
         >
           <Grid
@@ -1886,6 +1886,17 @@ const NewLandingPage = () => {
             </Grid>
           </Grid>
         </ParallaxLayer>
+        <ParallaxLayer
+          sticky={{
+            start: isMobile ? 29 : 27,
+            end: isMobile ? 29 : 27.1,
+          }}
+          style={{
+            display: "flex",
+            height: "1vh",
+            backgroundColor: "transparent",
+          }}
+        ></ParallaxLayer>
       </Parallax>
     </Box>
   );
