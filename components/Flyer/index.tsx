@@ -153,24 +153,24 @@ const Flyer = () => {
                         marginBottom: "10px",
                       }}
                     >
-                      Join our open beta, and download the Exa App now!
+                      Download the Exa App now!
                     </Typography>
                     <Box
                       sx={{
                         display: "flex",
-                        justifyContent: "center",
+                        justifyContent: "space-around",
                         gap: 2,
                         flexWrap: "wrap",
                       }}
                     >
                       <Link
-                        href="https://testflight.apple.com/join/G2fD3Hkv"
+                        href="https://apps.apple.com/ar/app/exa-app/id6572315454"
                         target="_blank"
                         rel="noreferrer noopener"
                       >
                         <Image
-                          src="/hero/testflight.svg"
-                          alt="testflight logo"
+                          src="/hero/apple-store.svg"
+                          alt="apple store logo"
                           width="144"
                           height="48"
                         />
@@ -184,7 +184,7 @@ const Flyer = () => {
                         <Image
                           src="/hero/google-store.svg"
                           alt="google store logo"
-                          width="144"
+                          width="162"
                           height="48"
                         />
                       </Link>
@@ -246,6 +246,7 @@ const Flyer = () => {
                 <Box>
                   <Typography
                     variant="h1"
+                    width="100%"
                     sx={{
                       fontSize: "3rem",
                       fontWeight: 700,
@@ -273,25 +274,27 @@ const Flyer = () => {
                 </Box>
 
                 <Grid container sx={{ mb: 15 }}>
-                  <Typography
-                    sx={{
-                      color: "white",
-                      fontSize: "17px",
-                      px: "3px",
-                      marginBottom: "5px",
-                    }}
-                  >
-                    Join our open beta, and download the Exa App now!
-                  </Typography>
+                  <Grid item xs={12}>
+                    <Typography
+                      sx={{
+                        color: "white",
+                        fontSize: "17px",
+                        px: "3px",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      Download the Exa App now!
+                    </Typography>
+                  </Grid>
                   <Grid item md={3.5}>
                     <Link
-                      href="https://testflight.apple.com/join/G2fD3Hkv"
+                      href="https://apps.apple.com/ar/app/exa-app/id6572315454"
                       target="_blank"
                       rel="noreferrer noopener"
                     >
                       <Image
-                        src="/hero/testflight.svg"
-                        alt="testflight logo"
+                        src="/hero/apple-store.svg"
+                        alt="apple store logo"
                         width="144"
                         height="48"
                       />
@@ -306,7 +309,7 @@ const Flyer = () => {
                       <Image
                         src="/hero/google-store.svg"
                         alt="google store logo"
-                        width="144"
+                        width="162"
                         height="48"
                       />
                     </Link>
