@@ -264,12 +264,12 @@ const Flyer = () => {
                     sx={{
                       fontSize: "1.0625rem",
                       color: "white",
-                      width: "80%",
+                      width: "90%",
                       mb: 3,
                     }}
                   >
                     Unlock the power of your onchain assets: Earn, spend, borrow
-                    - all with the Exa App, powered by Exactly Protocol.
+                    - all with the Exa App, powered by the Exactly Protocol.
                   </Typography>
                 </Box>
 
@@ -280,7 +280,7 @@ const Flyer = () => {
                         color: "white",
                         fontSize: "17px",
                         px: "3px",
-                        marginBottom: "5px",
+                        marginBottom: "20px",
                       }}
                     >
                       Download the Exa App now!
