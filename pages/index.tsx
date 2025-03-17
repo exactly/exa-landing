@@ -1877,11 +1877,43 @@ const NewLandingPage = () => {
               </Box>
             </Grid>
           </Grid>
-          <Grid container mt={1} mb={4} justifyContent="center">
+          <Grid
+            container
+            mt={1}
+            mb={4}
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+            gap={5}
+          >
             <Grid item alignContent="right">
               <Typography fontSize={12} color={palette.neutral.secondary}>
                 Exa Labs financial partners and related subsidiaries provide
                 card-issuing services.
+              </Typography>
+            </Grid>
+            <Grid item alignContent="right">
+              <Typography fontSize={12} color={palette.neutral.secondary}>
+                Important Notice – Platform and Cross-Border Access Restrictions{" "}
+                <br />
+                Please be advised that the promotion, distribution, and offering
+                of our products and services outside of Hong Kong may require
+                specific licensing. This App and website—including all content
+                related to our card programs—are intended solely for individuals
+                who are both residents and domiciled in Hong Kong.
+                <br />
+                If you are domiciled outside of Hong Kong or are accessing our
+                service from an IP address located outside of Hong Kong, and you
+                do not wish to proceed, please close this App/website
+                immediately. By clicking “Start” (or “Continue”), you confirm
+                that you have read, understood, and agree to these restrictions,
+                and that you are accessing our service voluntarily and without
+                active promotion or solicitation.
+                <br />
+                If you are accessing this App/website from outside Hong Kong,
+                you do so entirely at your own initiative and assume full
+                responsibility for compliance with any applicable licensing or
+                regulatory requirements.
               </Typography>
             </Grid>
           </Grid>
