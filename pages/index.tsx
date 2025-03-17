@@ -1631,79 +1631,43 @@ const NewLandingPage = () => {
                   sx={() => ({
                     color: palette.brand.default,
                   })}
-                  mb={isMobile ? 2 : 6}
+                  mb={isMobile ? 1 : 6}
                 >
                   today.
                 </Typography>
               </Box>
-              <Grid
-                container
-                spacing={2}
-                my={isMobile ? 2 : 9}
+              <Box
+                my={isMobile ? 1 : 9}
+                display="flex"
                 alignItems="center"
+                justifyContent={isMobile ? "space-around" : "flex-start"}
               >
-                <Grid item xs={12} md={4.5}>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    href="https://discord.gg/fBdVmbH38Y"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    sx={() => ({
-                      backgroundColor: palette.brand.default,
-                      color: palette.brand.soft,
-                      borderRadius: "12px",
-                      height: "60px",
-                      "&:hover": {
-                        backgroundColor: palette.brand.default,
-                      },
-                    })}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Typography fontSize={15} fontWeight={600}>
-                        Get early access
-                      </Typography>
-                      <Image
-                        src="/icons/waitlist.svg"
-                        alt="waitlist icon"
-                        width={20}
-                        height={20}
-                      />
-                    </Box>
-                  </Button>
-                </Grid>
-                <Grid item xs={12} md={4.5}>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    href="https://twitter.com/Exa_App"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    fullWidth
-                    sx={(theme) => ({
-                      backgroundColor: theme.palette.brand.soft,
-                      color: theme.palette.brand.default,
-                      borderRadius: "12px",
-                      height: "60px",
-                      "&:hover": {
-                        backgroundColor: theme.palette.brand.soft,
-                      },
-                    })}
-                  >
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <Typography fontSize={15} fontWeight={600}>
-                        Follow us
-                      </Typography>
-                      <Image
-                        src="/icons/x.svg"
-                        alt="x icon"
-                        width={20}
-                        height={20}
-                      />
-                    </Box>
-                  </Button>
-                </Grid>
-              </Grid>
+                <Link
+                  href="https://apps.apple.com/ar/app/exa-app/id6572315454"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Image
+                    src="/hero/apple-store.svg"
+                    alt="apple store logo"
+                    width="144"
+                    height="48"
+                  />
+                </Link>
+
+                <Link
+                  href="https://play.google.com/store/apps/details?id=app.exactly"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Image
+                    src="/hero/google-store.svg"
+                    alt="google store logo"
+                    width="162"
+                    height="48"
+                  />
+                </Link>
+              </Box>
               <Box
                 display="flex"
                 gap={3}
@@ -1843,8 +1807,21 @@ const NewLandingPage = () => {
               <Box
                 display="flex"
                 gap={3}
+                alignItems="center"
                 sx={isMobile && { justifyContent: "center" }}
               >
+                <Link
+                  href="https://twitter.com/Exa_App"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <Image
+                    src="/icons/x.svg"
+                    alt="x icon"
+                    width={20}
+                    height={20}
+                  />
+                </Link>
                 <Link
                   href="https://medium.com/@exa.app"
                   target="_blank"
