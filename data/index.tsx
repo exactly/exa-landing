@@ -161,7 +161,7 @@ export const faqs = [
   },
   {
     question: "Where is the Exa card issued?",
-    answer: "The Exa Card is issued in Hong Kong.",
+    answer: "The Exa Card is issued in Puerto Rico, USA.",
   },
   {
     question: "What fees are associated with the usage of the Exa Card?",
