@@ -1871,26 +1871,14 @@ const NewLandingPage = () => {
             </Grid>
             <Grid item alignContent="right">
               <Typography fontSize={12} color={palette.neutral.secondary}>
-                Important Notice – Platform and Cross-Border Access Restrictions{" "}
+                Exa Labs SAS collaborates with Rain Cards, which is the issuer
+                of payment cards.
                 <br />
-                Please be advised that the promotion, distribution, and offering
-                of our products and services outside of Hong Kong may require
-                specific licensing. This App and website—including all content
-                related to our card programs—are intended solely for individuals
-                who are both residents and domiciled in Hong Kong.
-                <br />
-                If you are domiciled outside of Hong Kong or are accessing our
-                service from an IP address located outside of Hong Kong, and you
-                do not wish to proceed, please close this App/website
-                immediately. By clicking “Start” (or “Continue”), you confirm
-                that you have read, understood, and agree to these restrictions,
-                and that you are accessing our service voluntarily and without
-                active promotion or solicitation.
-                <br />
-                If you are accessing this App/website from outside Hong Kong,
-                you do so entirely at your own initiative and assume full
-                responsibility for compliance with any applicable licensing or
-                regulatory requirements.
+                The Exa Card is issued by Third National pursuant to a license
+                from Visa. Any credit issued by Exa Protocol subject to its
+                separate terms and conditions. Third National is not a party to
+                any agreement with Exa Protocol and is not responsible for any
+                loan or credit arrangement between user and Exa Protocol.
               </Typography>
             </Grid>
           </Grid>
