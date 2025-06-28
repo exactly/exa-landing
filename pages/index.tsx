@@ -273,10 +273,10 @@ const NewLandingPage = () => {
                     For everyone, everywhere
                   </Typography>
                   <Typography fontSize={34} fontWeight={700} color="#1A211E">
-                    Available worldwide
+                    An international card
                   </Typography>
                   <Typography fontSize={34} fontWeight={700} color="#12A594">
-                    in 160+ countries
+                    to spend worldwide
                   </Typography>
                 </Box>
               </animated.div>
@@ -741,7 +741,7 @@ const NewLandingPage = () => {
               </Box>
               <Box>
                 <Typography
-                  fontSize={34}
+                  fontSize={28}
                   fontWeight={700}
                   color={palette.brand.default}
                   lineHeight="34px"
@@ -886,7 +886,7 @@ const NewLandingPage = () => {
                   03.
                 </Typography>
                 <Typography component="span" fontWeight={600} mr="16px">
-                  02. ONCHAIN CREDIT
+                  02. ONCHAIN LOANS
                 </Typography>
                 <Typography component="span">01.</Typography>
               </Typography>
@@ -908,15 +908,15 @@ const NewLandingPage = () => {
                 }}
               >
                 <Image
-                  src="/icons/toggle-right.svg"
-                  alt="toggle right icon"
+                  src="/icons/hand-coins.svg"
+                  alt="coins icon"
                   width={40}
                   height={40}
                 />
               </Box>
               <Box>
                 <Typography
-                  fontSize={34}
+                  fontSize={28}
                   fontWeight={700}
                   color={palette.brand.default}
                   lineHeight="34px"
@@ -925,7 +925,7 @@ const NewLandingPage = () => {
                   Get onchain, fixed-rate credit instantly
                 </Typography>
                 <Typography fontSize={16} fontWeight={400} color="#5F6563">
-                  Borrow USDC securely through Exactly Protocol, in minutes.
+                  Borrow USDC securely through Exactly Protocol.
                 </Typography>
               </Box>
             </Grid>
@@ -939,7 +939,7 @@ const NewLandingPage = () => {
                 }}
               >
                 <Image
-                  src="/all-in-one-card.png"
+                  src="/loans.png"
                   alt="all in one"
                   layout="responsive"
                   style={{ borderRadius: "35px" }}
@@ -1017,7 +1017,7 @@ const NewLandingPage = () => {
               </Box>
               <Box>
                 <Typography
-                  fontSize={34}
+                  fontSize={28}
                   fontWeight={700}
                   color={palette.brand.default}
                   lineHeight="34px"
@@ -1334,7 +1334,7 @@ const NewLandingPage = () => {
                   fontWeight={700}
                   lineHeight="28px"
                 >
-                  Seamless transition between crypto and your local currency
+                  Need cash? Just tap with your Exa Card
                 </Typography>
                 <Typography
                   fontSize={
@@ -1342,7 +1342,7 @@ const NewLandingPage = () => {
                   }
                   fontWeight={400}
                 >
-                  Easily deposit and withdraw to your local currency.
+                  NFC-enabled ATM withdrawals now available with your Exa Card.
                 </Typography>
               </Box>
             </Grid>
@@ -1350,8 +1350,8 @@ const NewLandingPage = () => {
             <Grid item xs={12} md={4} padding={"0 20px"}>
               <Box display="flex" flexDirection="column">
                 <Image
-                  src="/img/swaps.svg"
-                  alt="swap"
+                  src="/cash.png"
+                  alt="cash"
                   layout="responsive"
                   width={340}
                   height={300}
@@ -1623,17 +1623,17 @@ const NewLandingPage = () => {
                     color: palette.brand.default,
                   })}
                 >
-                  Onchain banking,
+                  Exactly what finance
                 </Typography>
                 <Typography
                   fontSize={{ xs: 32, md: 48 }}
-                  fontWeight={700}
+                  fontWeight={300}
                   sx={() => ({
                     color: palette.brand.default,
                   })}
                   mb={isMobile ? 1 : 6}
                 >
-                  today.
+                  should be today.
                 </Typography>
               </Box>
               <Box
@@ -1871,14 +1871,12 @@ const NewLandingPage = () => {
             </Grid>
             <Grid item alignContent="right">
               <Typography fontSize={12} color={palette.neutral.secondary}>
-                Exa Labs SAS collaborates with Rain Cards, which is the issuer
-                of payment cards.
-                <br />
-                The Exa Card is issued by Third National pursuant to a license
-                from Visa. Any credit issued by Exa Protocol subject to its
-                separate terms and conditions. Third National is not a party to
-                any agreement with Exa Protocol and is not responsible for any
-                loan or credit arrangement between user and Exa Protocol.
+                *All borrowing and spending features are enabled by
+                non-custodial smart contracts. Terms apply. Cards are issued by
+                licensed third parties; Exa Labs does not issue or manage
+                payment instruments. Yield is variable and not guaranteed.
+                Subject to protocol conditions and smart contract interaction.
+                Access may be restricted in certain jurisdictions.
               </Typography>
             </Grid>
           </Grid>
