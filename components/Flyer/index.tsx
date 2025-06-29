@@ -67,7 +67,7 @@ const Flyer = () => {
               style={{
                 height: isMobile ? "auto" : "100vh",
                 width: isMobile ? "100%" : "auto",
-                maxHeight: isMobile ? "45vh" : "none",
+                maxHeight: isMobile ? "50vh" : "none",
                 objectFit: "cover",
                 maxWidth: "100%",
               }}
@@ -137,8 +137,8 @@ const Flyer = () => {
                 </Typography>
               </Box>
               <Typography fontSize={17}>
-                Say hi to buying now, and paying later while holding your
-                crypto.
+                Say hi to buying now, and paying later {isMobile && <br />}{" "}
+                while holding your crypto.
               </Typography>
             </Box>
             <Box
@@ -173,27 +173,6 @@ const Flyer = () => {
                   height={48}
                 />
               </Link>
-            </Box>
-
-            <Box
-              mt={2}
-              display="flex"
-              gap={3}
-              justifyContent={{ xs: "center", md: "flex-start" }}
-            >
-              <Image src="/hero/visa.svg" alt="Visa" width={60} height={20} />
-              <Image
-                src="/hero/apple-pay.svg"
-                alt="Apple Pay"
-                width={60}
-                height={20}
-              />
-              <Image
-                src="/hero/google-pay.svg"
-                alt="Google Pay"
-                width={40}
-                height={16}
-              />
             </Box>
           </Box>
         </Box>
