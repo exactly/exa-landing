@@ -1,46 +1,20 @@
-import React from "react";
-import { Box, Typography, Link, useMediaQuery, useTheme } from "@mui/material";
-import { ParallaxLayer } from "@react-spring/parallax";
+import { Box, Typography, useTheme, useMediaQuery, Link } from "@mui/material";
 import Image from "next/image";
 
-const Flyer = () => {
-  const { breakpoints } = useTheme();
-  const isMobile = useMediaQuery(breakpoints.down("sm"));
+export default function Flyer() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  return (
-    <ParallaxLayer offset={0} factor={1.1}>
-      <Box
-        sx={{
-          width: "100%",
-          height: "100vh",
-          backgroundColor: "#171918",
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: 0,
-          overflow: "hidden",
-        }}
-      >
-        <Box
-          sx={{
-            width: { xs: "100%", md: "40%" },
-            height: { xs: "auto", md: "100vh" },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            order: { xs: 1, md: 2 },
-            minWidth: { md: "40%" },
-            flexShrink: 0,
-            position: "relative",
-          }}
-        >
+  if (isMobile) {
+    return (
+      <Box sx={{ height: "100dvh", display: "flex", flexDirection: "column" }}>
+        <Box sx={{ height: "50%", position: "relative", overflow: "hidden" }}>
           <Box
             sx={{
               position: "absolute",
-              top: 16,
-              transform: "translateX(-90%)",
               width: "120px",
+              top: "5%",
+              left: "5%",
               display: { xs: "block", md: "none" },
               zIndex: 10,
             }}
@@ -57,128 +31,223 @@ const Flyer = () => {
               }}
             />
           </Box>
-
-          {
-            <Image
-              src="/hero-phone.jpg"
-              alt="Exa App Phone"
-              width={1152}
-              height={1152}
-              style={{
-                height: isMobile ? "auto" : "100vh",
-                width: isMobile ? "100%" : "auto",
-                maxHeight: isMobile ? "50vh" : "none",
-                objectFit: "cover",
-                maxWidth: "100%",
-              }}
-            />
-          }
+          <Image
+            src="/hero-phone.jpg"
+            alt="hero image"
+            fill
+            style={{
+              objectFit: "cover",
+              objectPosition: "center -10%",
+              transform: "scale(1.1)",
+            }}
+            priority
+          />
         </Box>
+
         <Box
           sx={{
-            width: { xs: "100%", md: "60%" },
-            height: "100%",
-            color: "white",
+            height: "50%",
+            backgroundColor: "#171918",
             display: "flex",
             flexDirection: "column",
-            order: { xs: 2, md: 1 },
-            pt: { xs: 3, md: 6 },
-            px: { xs: 3, md: 10 },
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 1,
+            padding: 3,
           }}
         >
-          {!isMobile && (
-            <Box
-              sx={{
-                width: { xs: "125px", md: "200px" },
-                alignSelf: { xs: "center", md: "flex-start" },
-              }}
-            >
-              <Image
-                src="/exa-app.svg"
-                alt="Exa App logo"
-                width={200}
-                height={40}
-                style={{ width: "100%", height: "auto" }}
-              />
-            </Box>
-          )}
           <Box
             sx={{
-              flex: 1,
+              textAlign: "center",
+              color: "white",
               display: "flex",
               flexDirection: "column",
-              justifyContent: { xs: "flex-start", md: "center" },
-              alignItems: { xs: "center", md: "flex-start" },
-              gap: isMobile ? 1 : 2,
+              gap: 2,
             }}
           >
-            <Box
-              display="flex"
-              flexDirection="column"
-              alignItems={isMobile ? "center" : "flex-start"}
-              justifyContent="center"
-              textAlign={isMobile ? "center" : "left"}
-              gap={1}
-            >
-              <Box display="flex" flexDirection="column">
-                <Typography
-                  fontSize={isMobile ? 31 : 56}
-                  fontWeight={700}
-                  color="#12A594"
-                >
-                  Exactly what finance
-                </Typography>
-                <Typography
-                  fontSize={isMobile ? 31 : 56}
-                  fontWeight={200}
-                  color="#50D1B2"
-                >
-                  should be today
-                </Typography>
-              </Box>
-              <Typography fontSize={17}>
-                Say hi to buying now, and paying later {isMobile && <br />}{" "}
-                while holding your crypto.
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "clamp(20px, 8vw, 31px)",
+                    md: 56,
+                  },
+                }}
+                fontWeight={700}
+                color="#12A594"
+              >
+                Exactly what finance
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: "clamp(20px, 8vw, 31px)",
+                    md: 56,
+                  },
+                }}
+                fontWeight={200}
+                color="#50D1B2"
+              >
+                should be today
               </Typography>
             </Box>
-            <Box
+            <Typography
               sx={{
-                display: "flex",
-                gap: 1,
-                mt: 2,
-                justifyContent: { xs: "center", md: "flex-start" },
+                fontSize: {
+                  xs: "clamp(14px, 4vw, 17px)",
+                  md: 17,
+                },
               }}
             >
-              <Link
-                href="https://apps.apple.com/ar/app/exa-app/id6572315454"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <Image
-                  src="/hero/apple-store.svg"
-                  alt="Apple Store"
-                  width={144}
-                  height={48}
-                />
-              </Link>
-              <Link
-                href="https://play.google.com/store/apps/details?id=app.exactly"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                <Image
-                  src="/hero/google-store.svg"
-                  alt="Google Store"
-                  width={162}
-                  height={48}
-                />
-              </Link>
-            </Box>
+              Say hi to buying now, and paying later {isMobile && <br />} while
+              holding your crypto.
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              mt: 2,
+              justifyContent: { xs: "center", md: "flex-start" },
+            }}
+          >
+            <Link
+              href="https://apps.apple.com/ar/app/exa-app/id6572315454"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Image
+                src="/hero/apple-store.svg"
+                alt="Apple Store"
+                width={144}
+                height={48}
+              />
+            </Link>
+            <Link
+              href="https://play.google.com/store/apps/details?id=app.exactly"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Image
+                src="/hero/google-store.svg"
+                alt="Google Store"
+                width={162}
+                height={48}
+              />
+            </Link>
           </Box>
         </Box>
       </Box>
-    </ParallaxLayer>
-  );
-};
+    );
+  }
+  return (
+    <Box sx={{ height: "100vh", display: "flex" }}>
+      <Box
+        sx={{
+          flex: 1,
+          backgroundColor: "#171918",
+          display: "flex",
+          padding: 8,
+          flexDirection: "column",
+        }}
+      >
+        <Box
+          sx={{
+            width: { xs: "125px", md: "200px" },
+          }}
+        >
+          <Image
+            src="/exa-app.svg"
+            alt="Exa App logo"
+            width={200}
+            height={40}
+            style={{ width: "100%", height: "auto" }}
+          />
+        </Box>
+        <Box
+          sx={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <Box
+            sx={{
+              color: "white",
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
+            <Box>
+              <Typography
+                fontSize={isMobile ? 31 : 56}
+                fontWeight={700}
+                color="#12A594"
+              >
+                Exactly what finance
+              </Typography>
+              <Typography
+                fontSize={isMobile ? 31 : 56}
+                fontWeight={200}
+                color="#50D1B2"
+              >
+                should be today
+              </Typography>
+            </Box>
 
-export default Flyer;
+            <Typography fontSize={17}>
+              Say hi to buying now, and paying later {isMobile && <br />} while
+              holding your crypto.
+            </Typography>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              gap: 1,
+              mt: 2,
+              justifyContent: { xs: "center", md: "flex-start" },
+            }}
+          >
+            <Link
+              href="https://apps.apple.com/ar/app/exa-app/id6572315454"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Image
+                src="/hero/apple-store.svg"
+                alt="Apple Store"
+                width={144}
+                height={48}
+              />
+            </Link>
+            <Link
+              href="https://play.google.com/store/apps/details?id=app.exactly"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <Image
+                src="/hero/google-store.svg"
+                alt="Google Store"
+                width={162}
+                height={48}
+              />
+            </Link>
+          </Box>
+        </Box>
+      </Box>
+      <Box sx={{ flex: 0.7, position: "relative", overflow: "hidden" }}>
+        <Image
+          src="/hero-phone.jpg"
+          alt="hero image"
+          fill
+          style={{
+            objectFit: "cover",
+          }}
+          priority
+        />
+      </Box>
+    </Box>
+  );
+}
