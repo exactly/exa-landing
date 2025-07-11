@@ -106,35 +106,75 @@ export default function Flyer() {
           <Box
             sx={{
               display: "flex",
+              flexDirection: "column",
               gap: 1,
               mt: 2,
               justifyContent: { xs: "center", md: "flex-start" },
             }}
           >
-            <Link
-              href="https://apps.apple.com/ar/app/exa-app/id6572315454"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Image
-                src="/hero/apple-store.svg"
-                alt="Apple Store"
-                width={144}
-                height={48}
-              />
-            </Link>
-            <Link
-              href="https://play.google.com/store/apps/details?id=app.exactly"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Image
-                src="/hero/google-store.svg"
-                alt="Google Store"
-                width={162}
-                height={48}
-              />
-            </Link>
+            <Box>
+              <Link
+                href="https://apps.apple.com/app/exa-app/id6572315454"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Image
+                  src="/hero/apple-store.svg"
+                  alt="Apple Store"
+                  width={144}
+                  height={48}
+                />
+              </Link>
+              <Link
+                href="https://play.google.com/store/apps/details?id=app.exactly"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Image
+                  src="/hero/google-store.svg"
+                  alt="Google Store"
+                  width={162}
+                  height={48}
+                />
+              </Link>
+            </Box>
+            <Box display="flex" justifyContent="center">
+              <Link
+                href="https://web.exactly.app"
+                target="_blank"
+                rel="noreferrer noopener"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  textDecoration: "none",
+                }}
+              >
+                <Typography fontSize={13} color="#EEF1F0">
+                  or use the{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      textDecoration: "underline",
+                      textUnderlineOffset: "2px",
+                    }}
+                  >
+                    web version
+                  </Box>
+                </Typography>
+                <Image
+                  src="/icons/arrow-out.svg"
+                  alt="x icon"
+                  width={12}
+                  height={12}
+                  style={{
+                    fill: "#EEF1F0",
+                    stroke: "#EEF1F0",
+                    strokeWidth: 1,
+                  }}
+                />
+              </Link>
+            </Box>
           </Box>
         </Box>
       </Box>
@@ -208,32 +248,72 @@ export default function Flyer() {
               gap: 1,
               mt: 2,
               justifyContent: { xs: "center", md: "flex-start" },
+              flexDirection: "column",
             }}
           >
-            <Link
-              href="https://apps.apple.com/ar/app/exa-app/id6572315454"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Image
-                src="/hero/apple-store.svg"
-                alt="Apple Store"
-                width={144}
-                height={48}
-              />
-            </Link>
-            <Link
-              href="https://play.google.com/store/apps/details?id=app.exactly"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              <Image
-                src="/hero/google-store.svg"
-                alt="Google Store"
-                width={162}
-                height={48}
-              />
-            </Link>
+            <Box>
+              <Link
+                href="https://apps.apple.com/app/exa-app/id6572315454"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Image
+                  src="/hero/apple-store.svg"
+                  alt="Apple Store"
+                  width={144}
+                  height={48}
+                />
+              </Link>
+              <Link
+                href="https://play.google.com/store/apps/details?id=app.exactly"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                <Image
+                  src="/hero/google-store.svg"
+                  alt="Google Store"
+                  width={162}
+                  height={48}
+                />
+              </Link>
+            </Box>
+            <Box display="flex">
+              <Link
+                href="https://web.exactly.app"
+                target="_blank"
+                rel="noreferrer noopener"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  textDecoration: "none",
+                }}
+              >
+                <Typography fontSize={13} color="#EEF1F0">
+                  or use the{" "}
+                  <Box
+                    component="span"
+                    sx={{
+                      textDecoration: "underline",
+                      textUnderlineOffset: "2px",
+                    }}
+                  >
+                    web version
+                  </Box>
+                </Typography>
+                <Image
+                  src="/icons/arrow-out.svg"
+                  alt="x icon"
+                  width={12}
+                  height={12}
+                  style={{
+                    fill: "#EEF1F0",
+                    stroke: "#EEF1F0",
+                    strokeWidth: 1,
+                  }}
+                />
+              </Link>
+            </Box>
           </Box>
         </Box>
       </Box>
