@@ -1614,26 +1614,26 @@ const NewLandingPage = () => {
               overflow: "hidden",
             }}
           >
-            <Grid item xs={12} md={6} padding="20px">
+            <Grid item xs={12} md={8} padding="20px">
               <Box sx={isMobile ? { textAlign: "center" } : {}}>
                 <Typography
-                  fontSize={{ xs: 32, md: 48 }}
+                  fontSize={{ xs: 32, md: 42 }}
                   fontWeight={700}
                   sx={() => ({
                     color: palette.brand.default,
                   })}
                 >
-                  Exactly what finance
+                  A card. A wallet. A DeFi protocol.
                 </Typography>
                 <Typography
-                  fontSize={{ xs: 32, md: 48 }}
+                  fontSize={{ xs: 32, md: 42 }}
                   fontWeight={300}
                   sx={() => ({
                     color: palette.brand.default,
                   })}
                   mb={isMobile ? 1 : 6}
                 >
-                  should be today.
+                  All of it together, onchain.
                 </Typography>
               </Box>
               <Box

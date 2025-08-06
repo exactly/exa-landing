@@ -53,7 +53,7 @@ export default function Flyer() {
             alignItems: "center",
             justifyContent: "center",
             gap: 1,
-            padding: 3,
+            padding: 1,
           }}
         >
           <Box
@@ -65,30 +65,35 @@ export default function Flyer() {
               gap: 2,
             }}
           >
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <Typography
                 sx={{
                   fontSize: {
-                    xs: "clamp(20px, 8vw, 31px)",
+                    xs: "clamp(20px, 8vw, 22px)",
                     md: 56,
                   },
                 }}
                 fontWeight={700}
                 color="#12A594"
               >
-                Exactly what finance
+                A card. A wallet. A DeFi protocol.
               </Typography>
               <Typography
                 sx={{
                   fontSize: {
-                    xs: "clamp(20px, 8vw, 31px)",
+                    xs: "clamp(20px, 8vw, 22px)",
                     md: 56,
                   },
                 }}
                 fontWeight={200}
                 color="#50D1B2"
               >
-                should be today
+                All of it together, onchain.
               </Typography>
             </Box>
             <Typography
@@ -99,8 +104,7 @@ export default function Flyer() {
                 },
               }}
             >
-              Say hi to buying now, and paying later {isMobile && <br />} while
-              holding your crypto.
+              Buy now, pay later, and hold your crypto.
             </Typography>
           </Box>
           <Box
@@ -226,20 +230,19 @@ export default function Flyer() {
                 fontWeight={700}
                 color="#12A594"
               >
-                Exactly what finance
+                A card. A wallet. A DeFi protocol.
               </Typography>
               <Typography
                 fontSize={isMobile ? 31 : 56}
                 fontWeight={200}
                 color="#50D1B2"
               >
-                should be today
+                All of it together, onchain.
               </Typography>
             </Box>
 
             <Typography fontSize={17}>
-              Say hi to buying now, and paying later {isMobile && <br />} while
-              holding your crypto.
+              Buy now, pay later, and hold your crypto.
             </Typography>
           </Box>
           <Box
