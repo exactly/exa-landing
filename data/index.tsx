@@ -204,7 +204,7 @@ export const faqs = [
   {
     question: "Where is the Exa Card Available?",
     answer:
-      "The Exa Card is available worldwide, the only countries where it is not available are:\n\nAfganistán, Belarus, Bulgaria, Burundi, North Korea, Croatia, Cuba, Eritrea, Ethiopia, Guinea-Bisáu, Haiti, Iraq, Iran, Lebanon, Liberia, Libya, Mali, Myanmar, Nicaragua, Centroafrican Republic, Democratic Republic of the Congo, Rwanda, Russia, Sierra Leona, Syria, Somalia, Sudan, South Sudan, Ucrania, Venezuela, Yemen and Zimbabwe.",
+      "The Exa Card is available anywhere Visa is accepted, the only countries where it is not available are:\n\nAfganistán, Belarus, Bulgaria, Burundi, North Korea, Croatia, Cuba, Eritrea, Ethiopia, Guinea-Bisáu, Haiti, Iraq, Iran, Lebanon, Liberia, Libya, Mali, Myanmar, Nicaragua, Centroafrican Republic, Democratic Republic of the Congo, Rwanda, Russia, Sierra Leona, Syria, Somalia, Sudan, South Sudan, Ucrania, Venezuela, Yemen and Zimbabwe.",
   },
 ];
 
@@ -222,8 +222,8 @@ export const carrouselImages = [
     src: "/carrousel/carrousel-2.png",
     alt: "carrousel-2",
     icon: "/icons/globe.svg",
-    buttonText: "160+ countries",
-    title: "Available worldwide in 160+ countries.",
+    buttonText: "150+ million merchants",
+    title: "Use your card anywhere Visa is accepted",
     subtitle:
       "Create an account, enable your virtual card and start spending right with your smartphone.",
   },
